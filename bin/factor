@@ -1,0 +1,22 @@
+#!/usr/pkg/bin/perl -w
+#
+
+$number = $ARGV[0];
+
+$remain = $number;
+
+for($i = 2; $i <= $number; $i++)
+{
+    if($remain == 1) { last; }
+#    print("$i divides $remain? ");
+#    print($remain%$i == 0);
+#    print("\n");
+    if($remain % $i == 0)
+    {
+	$remain /= $i;
+	print($i);
+	print(" ");
+	$i = 1;
+    }
+}
+print("\n");

@@ -1,0 +1,4 @@
+defbce "on"          # Erase background with current bg color.
+escape ^Oo                     # C-o as command key
+hardstatus alwayslastline
+hardstatus string '%{= kg}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %d %M %c ]%{W}'

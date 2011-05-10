@@ -1,0 +1,31 @@
+#!/usr/pkg/bin/bash
+
+if [ ! -n "$1" ]; then
+    echo "$1 : Please use the .dvi file as an argument."
+    exit 1
+fi
+
+FILENAME=$(echo $1|sed -e 's/\.dvi$//')
+BASENAME=`basename "$1" .dvi`
+EXT="${1##*.}"  #get everything after the last . character
+EXTENSION='.ps'
+
+if [ $EXT != 'dvi' ]; then
+    echo 'Error: '$1' is not a dvi file'
+    exit 1
+fi
+
+if [ -f $1 ]; then
+    if [ -f $BASENAME'.pdf' ]; then
+        rm -f $BASENAME'.pdf'
+    fi
+    if [ -f $BASENAME'.ps' ]; then
+        rm -f $BASENAME'.ps'
+    fi
+    echo 'Converting to PS format: '$BASENAME'.ps'
+    dvips -q -t letter -Ppdf $1
+    echo 'Converting to PDF format: '$BASENAME'.pdf'
+    ps2pdf $BASENAME$EXTENSION
+else
+    echo 'Error: '$1' does not exist.'
+fi

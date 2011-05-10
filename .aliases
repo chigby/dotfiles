@@ -1,0 +1,259 @@
+alias man='LC_ALL=C LANG=C man'
+alias f=finger
+alias ipython='ipython -cl'
+alias ll='ls -alh'
+alias la='ls -a'
+alias ls='ls -F --color=auto '
+
+# Directory navigation, e.g.:
+# cd by .. or ... or ... or mv file ..../.
+alias '..'='cd ..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+
+alias svnup="svn up ~/svn/{trunk,system,database,api,packages,teams_api,projects,docs}"
+alias svnst="svn --ignore-externals status | grep ^[ACDGMR?]"
+alias upall='svnup'
+alias svnticket="svn log --limit=10 | grep -A2 cameron | egrep -o '#[0-9]+'"
+alias taginfo="svn up; svn info |grep 'Last Changed Rev'; head -n1 debian/changelog"
+
+alias portup='sudo port selfupdate && sudo port upgrade outdated'
+
+alias sdf='ssh sdf.lonestar.org -l chigby'
+alias sverige='ssh sverige.freeshell.org -l chigby'
+alias svalbard='ssh svalbard.freeshell.org -l chigby'
+alias otaku='ssh otaku.freeshell.org -l chigby'
+alias iceland='ssh iceland.freeshell.org -l chigby'
+alias avatar='ssh avatar'
+alias orc='ssh orc'
+alias labs='ssh 192.168.31.21'
+
+alias j='jobs'
+alias s='sudo -s'
+alias xterm='xterm -fa Monaco -fs 11 &'
+alias tar='gnutar'
+alias df='df -h'
+alias du='du -h'
+
+alias bkup='sudo rsync -vaxAX --delete --exclude-from=/Users/cameronh/.backup/excluded-system --delete-excluded --ignore-errors / /Volumes/Backup\ 1'
+
+function v() {
+    vcommand=`which vagrant`
+    if [ $vcommand == 'vagrant not found' ]; then
+        rvm gemset use aw
+    fi
+    dir=`pwd`
+    builtin cd ~/svn/projects/vagrant
+    vagrant $@
+    builtin cd $dir
+}
+
+# Vagrant auto-complete
+function __vagrant {
+    VM=''
+    CMD="init"
+    if [ -f "/Users/cameronh/svn/projects/vagrant/Vagrantfile" ]; then
+        VM=`cat ~/svn/projects/vagrant/Vagrantfile | awk /vm.define/'{print $2}' | paste -s -d : - | sed s/:/\ /g | sed s/\ \ /\ /g`
+        CMD="up down halt ssh resume suspend destroy reload provision"
+    fi
+    eval "reply=($VM $CMD)"
+}
+compctl -K __vagrant v
+
+function vdup () { v destroy $@ ; v up $@ }
+compctl -K __vagrant vdup
+
+alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'
+
+alias taggable='svn diff -r $(svn log ../tags/$(ls ../tags | sort -n -t . -k 1,1 -k 2,2 -k 3,3 | tail -n1) --stop-on-copy -q | grep ^r | awk '\''{print $1}'\'' | sed '\''s/r//'\''):HEAD --summarize'
+
+alias dnsreset='sudo launchctl stop org.macports.dnsmasq && sudo launchctl start org.macports.dnsmasq && sudo dscacheutil -flushcache'
+
+###
+# functions
+###
+
+function totimestamp () {
+    php -r "fwrite(STDOUT,strtotime('$@'));"
+}
+
+function slog () {
+    svn log $@| awk 'NF == 14 && $1 ~ /^r[0-9]/ {user = $3; longdate = $5" "$6; sys = sprintf("totimestamp %s", longdate); date=system(sys)} $1 !~ /^r[0-9]/ && $1 !~ /^-{5,}/ && $0 !~ /^$/ {sys = sprintf("echo %s | td", $5); print date" ("user"): "$0}'
+}
+
+# Human readable mtime of file(s).
+lmod () {
+    if test -n "$1"; then
+        td $(( `date '+%s'` - `stat -f '%m' "$1"` )) | sed "s#^#$1    modified #" | sed 's/$/ ago/'
+    else
+        lines=$(while read line; do echo "$line"; done)
+        longest=$(echo $lines | awk '{print length(), $0 | "sort -nr"}' | head | awk '{print $1}' | head -n1)
+        for line in $(echo $lines | xargs); do
+            lmod "$line" | awk "{printf \"%-${longest}s    %s\n\", \$1,\$2}" FS='    '
+        done
+    fi
+}
+
+function lookup_pkg () {
+    pkg="$1"
+    echo -n "==[$pkg]";printf "%$((59 - $((${#pkg} + 4))))s\n"|tr ' ' '='
+    pkg_status $pkgecho
+    echo
+}
+
+function pkg_status (){
+    (for repo in lucid hardy; do lynx -dump -listonly http://repo/ubuntu-custom/$repo-aw/packages/ | grep "$1_" | sed 's/.*_\(.*\)_.*/\1/' | sed "s/$/ $repo development/"; lynx -dump -listonly http://repo/ubuntu-custom/$repo-aw-dev/packages/ | grep --color "$1_" | sed 's/.*_\(.*\)_.*/\1/' | sed "s/$/ $repo development/"; done) | sort -t . -k 1,1n -k 2,2n -k 3,3n | awk '{ a[NR]=$0 } END { for(i=NR; i; --i) print a[i] } ' | column -t
+}
+
+# This function will go through sparsely checked-out directories in
+# subversion and update only the specified subdirectories (in this
+# case, branches and trunk).  This way we can avoid having the "tags"
+# directory checked out, which only clutters up the hard drive with
+# unnecessary files and makes updating subversion take much longer.
+
+function pkgup () {
+    echo "Updating packages . . ."
+    # Edit the line below to be the correct base directory (checked
+    # out with --depth immediates).
+    BASE="/Users/cameronh/svn/projects/websites/"
+    BASE="/Users/cameronh/svn/packages/"
+    subdir="trunk"
+    branchdir="branches"
+    for dir in `ls "$BASE"`; do; echo -n "$dir " && svn up $BASE/$dir$subdir;  done
+    for dir in `ls "$BASE"`; do; echo -n "$dir " && svn up $BASE/$dir$branchdir;  done
+}
+
+function rdeps () {
+    for pkg in $(apt-rdepends "$1" | sed 's/^  Depends: //' | awk '{print $1}' | sort | uniq); do; [ -d "/opt/packages/$pkg" ] && lookup_pkg "$pkg"; done
+}
+
+
+cd() {
+    if [  -n "$1" ]; then
+        builtin cd "$@" && ls
+    else
+        builtin cd ~ && ls
+    fi
+}
+
+pkg () {
+    if [  -d /opt/packages ]; then
+        PKGDIR=/opt/packages
+    elif [  -d ~/svn/packages ]; then
+        PKGDIR=~/svn/packages
+    else
+        echo "Package directory unknown"
+        return
+    fi
+
+    if [  -n "$1" ]; then
+        for pkg in `find -L "$PKGDIR" -maxdepth 1 -type d -name "*$1*" -print`; do
+            echo "Found package $pkg"
+            echo
+            if [ -d /$pkg/trunk	]; then
+                builtin cd "$pkg/trunk"
+            else
+		builtin	cd "$pkg"
+            fi
+            ls
+            return
+        done
+        echo "Package not found: $1"
+    else
+        builtin cd $PKGDIR
+        ls
+    fi
+}
+
+prj () {
+    if [  -d ~/svn/projects ]; then
+        PKGDIR=~/svn/projects
+    else
+        echo "Package directory unknown"
+        return
+    fi
+
+    if [  -n "$1" ]; then
+        for pkg in `find -L "$PKGDIR" -maxdepth 2 -type d -name "*$1*" -print`; do
+            echo "Found package $pkg"
+            echo
+            if [ -d /$pkg/trunk	]; then
+                builtin cd "$pkg/trunk"
+            else
+		builtin	cd "$pkg"
+            fi
+            ls
+            return
+        done
+        echo "Package not found: $1"
+    else
+        builtin cd $PKGDIR
+        ls
+    fi
+}
+
+decruft () {
+    for ext in .pyc \~; do
+        rm -f **/*$ext(N)
+        done
+}
+
+
+# Colorize tail output for log monitoring.
+ctail () {
+    tail "$@" | perl -pe 'sub c {%c=("ERROR",31,"INFO",32,"DEBUG",36,"WARNING",33,"CRITICAL",35);"\e[1;".$c{@_[0]}."m".@_[1]}s/.*\b(ERROR|WARNING|CRITICAL|DEBUG|INFO)\b.*/c($1,$&)/ge;'
+}
+
+# Cake test stuff
+
+alias cleandb="psql -U postgres -p5432 -dcake_test < /usr/share/sql/clean_cake_db.sql | grep NOTICE"
+
+caketestcase () {
+    php -q /home/sites/cake_core/1.2b/cake/console/cake.php -app /home/sites/$1 testsuite app case $2
+}
+caketestgroup () {
+    php -q /home/sites/cake_core/1.2b/cake/console/cake.php -app /home/sites/$1 testsuite app group $2
+}
+
+alias ctaw="caketestcase aweber_app $1"
+alias ctad="caketestcase aweber_admin_app $1"
+alias ctan="caketestcase analytics_app $1"
+
+alias st="seleniumtestcase $1"
+alias stff="caketestgroup aweber_app seleniumFirefox"
+
+# Strip ANSI formatting from text
+function noansi () {
+    perl -pe "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"
+}
+
+# Convert epoch timestamp to human readable format
+function epoch2date() {
+    `date --version &> /dev/null` && DATEVER=gnu || DATEVER=bsd
+    if test -n "$1"
+    then
+        if [[ "$DATEVER" = bsd ]]; then
+            date -r "$1"
+        else
+            date -d "1970-01-01 $1 sec GMT"
+        fi
+    else
+        while read line
+        do
+            if [[ "$DATEVER" = bsd ]]; then
+                date -r "$line"
+            else
+                date -d "1970-01-01 $line sec GMT"
+            fi
+        done
+    fi
+}
+
+function irssi () {
+    if [[ $TERM != xterm-color ]]; then
+        TERM=xterm-color
+    fi
+    /opt/local/bin/irssi
+    TERM=xterm
+}

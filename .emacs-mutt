@@ -1,0 +1,38 @@
+
+;;Disable the menu bar.
+(menu-bar-mode -1)
+
+(define-key global-map "\C-h" 'backward-delete-char)
+;;( setq auto-mode-alist ( cons '("mutt" . mail-mode) auto-mode-alist ))
+
+(load-file "/arpa/af/c/chigby/.emacs.d/post.el")
+( setq auto-mode-alist ( cons '("mutt" . post-mode) auto-mode-alist ))
+
+;;(add-hook 'mail-mode-hook 'turn-on-auto-fill)
+(add-hook 'post-mode-hook 'turn-on-font-lock)
+
+;; Unicode Stuff
+
+(set-terminal-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+;;see  .emacs.d/init.el for more information
+(global-set-key (kbd "M-j") 'backward-char) ; was indent-new-comment-line
+(global-set-key (kbd "M-l") 'forward-char)  ; was downcase-word
+(global-set-key (kbd "M-i") 'previous-line) ; was tab-to-tab-stop
+(global-set-key (kbd "M-k") 'next-line) ; was kill-sentence
+(global-set-key (kbd "C-M-j") 'backward-word) ; was comment-indent-new-line
+(global-set-key (kbd "C-M-l") 'forward-word)  ; was reposition-window
+
+(defun cc-into-to ()
+  (interactive)
+  (header-goto-cc)
+  (kill-line)
+  (header-goto-to)
+  (move-end-of-line 1)
+  (insert ", ")
+  (yank))
+
+(global-set-key [f6] 'cc-into-to)

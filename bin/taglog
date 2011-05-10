@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ $1 ]; then
+    NUMTAGS=`expr $1 + 1`
+else
+    NUMTAGS=5
+fi
+
+TRUNKPATH=`svn info |grep '^URL'|awk '{print $2}'`
+TAGPATH=`svn info |grep '^URL'|awk '{print $2}'|sed 's/trunk/tags/'`
+TAGS=`svn ls $TAGPATH |sort -r -n -t . -k 1,1 -k2,2 -k3,3 | head -n$NUMTAGS`
+PREVIOUS='HEAD'
+
+echo '--------------------------------------------------'
+echo 'NOT YET TAGGED'
+echo '--------------------------------------------------'
+
+i=`expr 0`
+for tag in $TAGS
+do
+    REV=`svn log $TAGPATH/$tag --stop-on-copy -q |grep '^r' | awk '{print $1}' | sed 's/r//'`
+    svn log $TRUNKPATH -r $PREVIOUS:$REV|awk 'NF == 14 && $1 ~ /^r[0-9]/ {user = $3} $1 !~ /^r[0-9]/ && $1 !~ /^-{5,}/ && $0 !~ /^$/ {print "("user"): "$0}'
+    PREVIOUS=$REV
+    echo "--------------------------------------------------"
+    echo "VERSION $tag"
+    echo "--------------------------------------------------"
+    i=`expr $i + 1`
+done
+
+# If we have displayed all tags but want more, show all remaining revisions.
+if [ $i -lt $NUMTAGS ]; then
+    TRUNKREV=`svn log -l1 -r1:HEAD $TRUNKPATH --stop-on-copy -q |grep '^r' | awk '{print $1}' | sed 's/r//'`
+    svn log $TRUNKPATH -r$PREVIOUS:$TRUNKREV|awk 'NF == 14 && $1 ~ /^r[0-9]/ {user = $3} $1 !~ /^r[0-9]/ && $1 !~ /^-{5,}/ && $0 !~ /^$/ {print "("user"): "$0}'
+fi
+

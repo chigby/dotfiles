@@ -1,0 +1,193 @@
+#source .mutt-colors
+set implicit_autoview		#Tells mutt to automatically show everything it knows how to.
+alternative_order text/plain text/html	#Prefer plain text to html when possible.
+auto_view text/html		# Always view html.
+set mailcap_path="~/.mailcap"	# Location of the mailcap file.  It contains instructions for viewing attachments.
+
+#Use ascii arrows
+set ascii_chars=no
+
+#Copy tells mutt to save a copy of any message you send to a location specified by the record variable.
+set copy=yes
+
+#set charset="UTF-8"
+set charset=iso-8859-1#//TRANSLIT
+
+set edit_headers=yes #Permits editing of headers while composing the message.
+
+#I'm trying to get a lower-case email address.
+set hostname=sdf.lonestar.org
+
+#inplicitautoview displays attachments inline (in the pager, not an external program)
+#set implicit_autoview
+
+# When set, the initial prompt for recipients and subject are skipped
+# when replying to messages, and the initial prompt for subject is
+# skipped when forwarding messages.
+set fast_reply
+
+# Controls whether or not a copy of the message(s) you are replying to is included in your reply.
+set include=yes
+
+#record tells mutt where to save your sent mail
+set record="~/Mail/sent-mail"
+
+#stops mutt from displaying + signs for long lines.  Useful for copying urls.
+unset markers
+
+#sort is the default sort order
+set sort=threads
+
+#sort_aux is complicated.  See /sys/pkg/etc/rmuttrc (line 2647) for complete info.
+set sort_aux=last-date-received
+
+#try selectively weeding headers?
+unignore *
+ignore "from " received content- mime-version status x-status message-id
+ignore sender references return-path lines x-origin domain
+ignore Message-ID: In-Reply-To: References:
+ignore Content-Disposition: Content-Transfer-Encoding: Content-ID:
+ignore X-
+unignore X-Originating-IP
+ignore delivered-to
+ignore dkim
+ignore precedence
+ignore Content-Length: Content-Type:
+ignore Apparently-To:
+ignore Auto-Submitted:
+ignore Comment:
+ignore Disposition-Notification-To:
+ignore Fcc:
+ignore Importance:
+ignore List-
+ignore Errors-to
+unignore List-Id
+ignore List-Unsubscribe:
+ignore MIME-Version:
+ignore Organization:
+ignore Sender:
+ignore Status:
+ignore Authentication-
+ignore User-Agent:
+ignore X-Accept-Language:
+ignore X-Authentication-Warning:
+ignore X-Cursor-Pos:
+ignore X-Delivery:
+ignore X-IMAP:
+ignore X-Keywords:
+ignore X-LSV-ListID:
+ignore X-Lotus-FromDomain:
+ignore X-IMAPbase:
+ignore X-MIME-Autoconverted:
+ignore X-MIMETrack:
+ignore X-MSMail-Priority:
+ignore X-MS-TNEF-Correlator:
+ignore X-Mailer:
+ignore X-MimeOLE:
+ignore X-OriginalArrivalTime:
+ignore X-Priority:
+ignore X-Sender:
+ignore X-Server:
+ignore X-Status:
+ignore X-UID:
+ignore X-User-Info:
+ignore X-MDRemoteIP:
+ignore X-Return-Path:
+ignore X-MDaemon-Deliver-To:
+ignore X-VirusChecked:
+ignore X-cid:
+unignore date
+
+#hdr_order header1 header2 header3
+# (the order in which mutt will attempt to present headers.
+
+unhdr_order *
+hdr_order Date: From: To: CC: Subject:
+
+#Move automatically moves read messages to the mbox.  This deletes the messages from the mailserver
+set move=no
+
+bind editor <delete> backspace
+bind generic <backspace> previous-line
+
+#Editor tells mutt what editor to use.
+set editor="emacs -nw --no-init-file --load ~/.emacs-mutt +8:0"
+#set editor="pico" #use this line if emacs is unavailable
+
+#Alias file information.  This tells mutt which file to check for my aliases.
+source ~/.mail-aliases
+set alias_file=~/.mail-aliases
+
+set index_format = "%4C %Z %{%b %d} %-18.18F %s"
+
+#Mailing lists
+subscribe maplemorris@yahoogroups.com
+subscribe maplemorris@googlegroups.com
+subscribe rapper@dancingjars.com
+subscribe swatpeeps@googlegroups.com
+subscribe folkdance@sccs.swarthmore.edu
+subscribe rpg@bearhome.net
+
+#COLORS
+
+color header 	yellow	   black  "^List-"
+color header 	yellow	   black  "^Errors-"
+
+#color tree	red	black #Thread arrows.
+color tree	green	black #thread arrows under os x terminal
+color indicator black	cyan 	#indicator?
+color status	brightgreen	black 	#status line
+color hdrdefault	cyan	black	#default header color
+color attachment	brightyellow	black 	#MIME attachments
+
+color index	green          black  ~l      # Mailing list
+color index     magenta        black  ~F      # Flagged
+color index     cyan           black  ~T      # Tagged
+color index     red            black  ~D      # Deleted
+color index     yellow         black  ~N      # New
+color index     yellow         black  ~O      # Old
+
+
+
+
+
+#  Coloring quoted text - coloring the first 7 levels:
+color quoted    green      black
+color quoted1   yellow    black
+color quoted2   red       black
+color quoted3   cyan     black
+color quoted4   green      black
+color quoted5   yellow    black
+color quoted6   red       black
+color quoted7   cyan     black
+
+#URLs in message bodies
+color body      magenta     black  "\\b[^ ]+://[^ \(\>)]*"
+
+set display_filter=~/bin/mail-to-filter #Need the equals sign for this to work??
+
+macro index I "l (~N|~F|~O)<enter>"
+
+ macro pager ,@r13on "<enter-command>set display_filter=~/bin/mail-to-filter ;\
+       macro pager \\er ,@r13off 'Toggle ROT13 decoding'\
+       <Enter><exit><display-message>"
+
+ macro pager ,@r13off "<enter-command>unset display_filter ;\
+       macro pager \\er ,@r13on 'Toggle ROT13 decoding'\
+       <Enter><exit><display-message>"
+
+ macro pager \er ,@r13off 'Toggle ROT13 decoding'
+
+
+#Message Hooks
+
+#These two hooks I use to ensure that mail from certain domains, which 
+#often gets sent with very long lines, is viewed in HTML mode where
+#the lines wrap intelligently.
+
+#message-hook '~f "(hotmail|yahoo.com|verizon|myway|netzero)"' 'auto_view text/html'
+#message-hook '!(~f "(hotmail|yahoo.com|verizon|myway|netzero)")' 'unauto_view *'
+
+#message-hook '~f "(hotmail|yahoo.com|verizon|myway|netzero)"' 'unalternative_order *; alternative_order text/html text/plain'
+#message-hook '!(~f "(hotmail|yahoo.com|verizon|myway|netzero)")' 'unalternative_order *; alternative_order text/plain text/html'
+
