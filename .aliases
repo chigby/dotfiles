@@ -40,7 +40,7 @@ alias bkup='sudo rsync -vaxAX --delete --exclude-from=/Users/cameronh/.backup/ex
 
 function v() {
     vcommand=`which vagrant`
-    if [ $vcommand == 'vagrant not found' ]; then
+    if [[  $vcommand == 'vagrant not found'  ]]; then
         rvm gemset use aw
     fi
     dir=`pwd`
