@@ -30,7 +30,7 @@ zmodload -a zsh/mapfile mapfile
 
 precmd () { }
 
-path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin /usr/bin /opt/awutil /opt/awbin)
+path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin ~/svn/trunk/code/local /usr/bin /opt/awutil /opt/awbin)
 TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
