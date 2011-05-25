@@ -137,60 +137,42 @@ cd() {
     fi
 }
 
-pkg () {
-    if [  -d /opt/packages ]; then
-        PKGDIR=/opt/packages
-    elif [  -d ~/svn/packages ]; then
-        PKGDIR=~/svn/packages
-    else
-        echo "Package directory unknown"
-        return
-    fi
+function pkg () {
+    PKGPATH="$HOME/svn/projects/python;$HOME/svn/packages;/opt/projects;/opt/packages;$HOME/svn/projects/perl"
+    CWD=`pwd`
+    for PKGDIR in $(echo $PKGPATH | tr ';' '\n'); do
+        if [ ! -d "$PKGDIR" ]; then continue; fi
 
-    if [  -n "$1" ]; then
-        for pkg in `find -L "$PKGDIR" -maxdepth 1 -type d -name "*$1*" -print`; do
-            echo "Found package $pkg"
-            echo
-            if [ -d /$pkg/trunk	]; then
-                builtin cd "$pkg/trunk"
-            else
-		builtin	cd "$pkg"
+        if [ -n "$1" ]; then
+            for dir in "$PKGDIR/$1/trunk" "$PKGDIR/$1"; do
+                if [ -d "$dir" ] && [ "$dir" != "$CWD" ]; then
+                    echo "Found package $PKGDIR/$1"
+                    echo
+                    builtin cd "$dir"
+                    ls
+                    return
+                fi
+            done
+            for pkg in `find -L "$PKGDIR" -maxdepth 1 -type d -name "*$1*" -print`; do
+                echo "Found package $pkg"
+                echo
+                if [ -d "$pkg/trunk" ]; then
+                    builtin cd "$pkg/trunk"
+                else
+                    builtin cd "$pkg"
+                fi
+                ls
+                return
+            done
+        else
+            if [ "$PKGDIR" != "$CWD" ]; then
+                builtin cd $PKGDIR
+                ls
+                return
             fi
-            ls
-            return
-        done
-        echo "Package not found: $1"
-    else
-        builtin cd $PKGDIR
-        ls
-    fi
-}
-
-prj () {
-    if [  -d ~/svn/projects ]; then
-        PKGDIR=~/svn/projects
-    else
-        echo "Package directory unknown"
-        return
-    fi
-
-    if [  -n "$1" ]; then
-        for pkg in `find -L "$PKGDIR" -maxdepth 2 -type d -name "*$1*" -print`; do
-            echo "Found package $pkg"
-            echo
-            if [ -d /$pkg/trunk	]; then
-                builtin cd "$pkg/trunk"
-            else
-		builtin	cd "$pkg"
-            fi
-            ls
-            return
-        done
-        echo "Package not found: $1"
-    else
-        builtin cd $PKGDIR
-        ls
-    fi
+        fi
+    done
+    echo "Package not found: $1"
 }
 
 decruft () {
