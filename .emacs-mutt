@@ -1,4 +1,3 @@
-
 ;;Disable the menu bar.
 (menu-bar-mode -1)
 
@@ -28,11 +27,17 @@
 
 (defun cc-into-to ()
   (interactive)
+  (setq transient-mark-mode nil)
   (header-goto-cc)
-  (kill-line)
+  (set-mark-command nil)
+  (header-goto-bcc)
+  (move-beginning-of-line 1)
+  (backward-char)
+  (kill-region (region-beginning) (region-end))
   (header-goto-to)
   (move-end-of-line 1)
   (insert ", ")
-  (yank))
+  (yank)
+  )
 
 (global-set-key [f6] 'cc-into-to)
