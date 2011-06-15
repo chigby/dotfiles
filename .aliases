@@ -138,7 +138,7 @@ cd() {
 }
 
 function pkg () {
-    PKGPATH="$HOME/svn/projects/python;$HOME/svn/packages;/opt/projects;/opt/packages;$HOME/svn/projects/perl"
+    PKGPATH="$HOME/svn/projects/python;$HOME/svn/packages;/opt/projects;/opt/packages;$HOME/svn/projects/perl;$HOME/svn/projects/vagrant"
     CWD=`pwd`
     for PKGDIR in $(echo $PKGPATH | tr ';' '\n'); do
         if [ ! -d "$PKGDIR" ]; then continue; fi
