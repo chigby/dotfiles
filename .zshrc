@@ -74,16 +74,15 @@ else
   MUTT_EDITOR=emacsclient.emacs-snapshot
 fi
 
-# needed for running stew-svn on avatar
-if [  $SUDO_USER ]; then
-    export SVN_SSH="ssh -o \"IdentitiesOnly yes\" -i $HOME/.ssh/svn-id_rsa -l $SUDO_USER"
-fi
-
 unsetopt ALL_EXPORT
 
 # Source aliases.
 if [ -f ~/.aliases ]; then
     . ~/.aliases
+fi
+
+if [ -f ~/.aliases-aw ]; then
+    . ~/.aliases-aw
 fi
 
 autoload -U compinit
@@ -189,10 +188,6 @@ fi
 
 # Set an auto-logout for critical servers or root sessions.
 case "$HOSTNAME" in
-    avatar)
-        export PGHOST='localhost'
-        export SERVERTYPE='dev'
-        ;;
     dev*)
         export SERVERTYPE='dev'
         ;;
@@ -206,11 +201,6 @@ esac
 if [ "`id -u`" -eq 0 ] || [[ "$SERVERTYPE" == critical ]]; then
    # 15 min timeout
    TMOUT=900
-fi
-
-# Disable the timeout on avatar. It just gets in the way.
-if [[ "$HOSTNAME" == avatar || "$HOSTNAME" == labs ]]; then
-    unset TMOUT
 fi
 
 # Initiate screen.
