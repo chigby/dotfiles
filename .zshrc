@@ -11,7 +11,7 @@ setopt CORRECT			# command CORRECTION
 setopt EXTENDED_HISTORY		# puts timestamps in the history
 # setopt HASH_CMDS		# turns on hashing
 #
-setopt MENUCOMPLETE
+unsetopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 # Set/unset  shell options
