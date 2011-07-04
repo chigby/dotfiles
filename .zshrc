@@ -15,7 +15,8 @@ unsetopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 # Set/unset  shell options
-setopt   notify globdots correct pushdtohome cdablevars autolist
+setopt   notify globdots correct pushdtohome autolist
+unsetopt cdablevars # for some reason setting this puts users in my cd completion
 setopt   correctall autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
