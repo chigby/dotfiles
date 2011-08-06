@@ -1,0 +1,17 @@
+#!/usr/bin/env perl
+
+@backup_dir = grep { -d $_ && m/Backup \d+/ } glob "/Volumes/*";
+
+if (@backup_dir) {
+    $dir = @backup_dir[0];
+    $dir =~ s/ /\\ /g;
+
+    print "Using $dir\n";
+    $rsync = "sudo rsync -vaxAX --delete --exclude-from=/Users/cameronh/.backup/excluded-system --delete-excluded --ignore-errors / $dir";
+    system($rsync);
+    $touch = "sudo touch $dir/.metadata_never_index";
+    system($touch);
+
+} else {
+    print "No backup volumes found.\n";
+}
