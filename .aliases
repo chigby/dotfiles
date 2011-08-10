@@ -31,7 +31,7 @@ alias du='du -h'
 
 function tng() {
     subcommand=$1
-    revfile=~/temp/procyon/tng/tng_all.tar.bz2
+    revfile=~/Documents/tng/tng_all.tar.bz2
     if [[ $subcommand == 'rev' ]]; then
         file="$2.rev"
         gnutar -xjvOf $revfile $file | less
