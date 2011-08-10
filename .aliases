@@ -29,8 +29,6 @@ alias tar='gnutar'
 alias df='df -h'
 alias du='du -h'
 
-alias bkup='sudo rsync -vaxAX --delete --exclude-from=/Users/cameronh/.backup/excluded-system --delete-excluded --ignore-errors / /Volumes/Backup\ 1'
-
 function tng() {
     subcommand=$1
     revfile=~/temp/procyon/tng/tng_all.tar.bz2
