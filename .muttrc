@@ -118,7 +118,7 @@ set editor="emacs -nw --no-init-file --load ~/.emacs-mutt +8:0"
 source ~/.mail-aliases
 set alias_file=~/.mail-aliases
 
-set index_format = "%4C %Z %{%b %d} %-18.18F %s"
+set index_format = "%4C %Z %{%b %d} %-20.20F %s"
 
 #Mailing lists
 subscribe maplemorris@yahoogroups.com
