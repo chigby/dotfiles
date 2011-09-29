@@ -1,6 +1,5 @@
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
-alias ipython='ipython -cl'
 alias ll='ls -alh'
 alias la='ls -a'
 alias ls='ls -F --color=auto '
@@ -28,6 +27,9 @@ alias xterm='xterm -fa Monaco -fs 11 &'
 alias tar='gnutar'
 alias df='df -h'
 alias du='du -h'
+
+alias ipython='ipython -classic'
+alias thes='dict -d moby-thes'
 
 function tng() {
     subcommand=$1
