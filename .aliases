@@ -35,18 +35,18 @@ function tng() {
     subcommand=$1
     revfile=~/Documents/tng/tng_all.tar.bz2
     if [[ $subcommand == 'rev' ]]; then
-        file="$2.rev"
-        gnutar -xjvOf $revfile $file | less
+	file="$2.rev"
+	gnutar -xjvOf $revfile $file | less
     elif [[ $subcommand == 'search' ]]; then
-        term=$2
-        gnutar -tf $revfile | grep $term
+	term=$2
+	gnutar -tf $revfile | grep $term
     elif [[ $subcommand == 'help' ]]; then
-        echo "Available subcommands:"
-        echo "tng rev [name] -- Display review with name [name]."
-        echo "tng search [name] -- List review names matching [name]."
-        echo "tng help -- Display this help."
+	echo "Available subcommands:"
+	echo "tng rev [name] -- Display review with name [name]."
+	echo "tng search [name] -- List review names matching [name]."
+	echo "tng help -- Display this help."
     else
-        echo "Subcommand '$subcommand' not found."
+	echo "Subcommand '$subcommand' not found."
     fi
 }
 
@@ -61,28 +61,28 @@ alias dnsreset='sudo launchctl stop org.macports.dnsmasq && sudo launchctl start
 # Human readable mtime of file(s).
 lmod () {
     if test -n "$1"; then
-        td $(( `date '+%s'` - `stat -f '%m' "$1"` )) | sed "s#^#$1    modified #" | sed 's/$/ ago/'
+	td $(( `date '+%s'` - `stat -f '%m' "$1"` )) | sed "s#^#$1    modified #" | sed 's/$/ ago/'
     else
-        lines=$(while read line; do echo "$line"; done)
-        longest=$(echo $lines | awk '{print length(), $0 | "sort -nr"}' | head | awk '{print $1}' | head -n1)
-        for line in $(echo $lines | xargs); do
-            lmod "$line" | awk "{printf \"%-${longest}s    %s\n\", \$1,\$2}" FS='    '
-        done
+	lines=$(while read line; do echo "$line"; done)
+	longest=$(echo $lines | awk '{print length(), $0 | "sort -nr"}' | head | awk '{print $1}' | head -n1)
+	for line in $(echo $lines | xargs); do
+	    lmod "$line" | awk "{printf \"%-${longest}s    %s\n\", \$1,\$2}" FS='    '
+	done
     fi
 }
 
 cd() {
     if [  -n "$1" ]; then
-        builtin cd "$@" && ls
+	builtin cd "$@" && ls
     else
-        builtin cd ~ && ls
+	builtin cd ~ && ls
     fi
 }
 
 decruft () {
     for ext in .pyc \~; do
-        rm -f **/*$ext(N)
-        done
+	rm -f **/*$ext(N)
+	done
 }
 
 # Colorize tail output for log monitoring.
@@ -100,26 +100,26 @@ function epoch2date() {
     `date --version &> /dev/null` && DATEVER=gnu || DATEVER=bsd
     if test -n "$1"
     then
-        if [[ "$DATEVER" = bsd ]]; then
-            date -r "$1"
-        else
-            date -d "1970-01-01 $1 sec GMT"
-        fi
+	if [[ "$DATEVER" = bsd ]]; then
+	    date -r "$1"
+	else
+	    date -d "1970-01-01 $1 sec GMT"
+	fi
     else
-        while read line
-        do
-            if [[ "$DATEVER" = bsd ]]; then
-                date -r "$line"
-            else
-                date -d "1970-01-01 $line sec GMT"
-            fi
-        done
+	while read line
+	do
+	    if [[ "$DATEVER" = bsd ]]; then
+		date -r "$line"
+	    else
+		date -d "1970-01-01 $line sec GMT"
+	    fi
+	done
     fi
 }
 
 function irssi () {
     if [[ $TERM != xterm-color ]]; then
-        TERM=xterm-color
+	TERM=xterm-color
     fi
     /opt/local/bin/irssi
     TERM=xterm
