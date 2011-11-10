@@ -31,6 +31,11 @@ alias du='du -h'
 alias ipython='ipython -classic'
 alias thes='dict -d moby-thes'
 
+# find all installed packages that depends on a given package.
+function rdep () {
+    apt-cache rdepends $1|sed '1,2d'|sort|uniq|xargs apt-cache policy |grep "Installed: [0-9]" -B1
+}
+
 function tng() {
     subcommand=$1
     revfile=~/Documents/tng/tng_all.tar.bz2
