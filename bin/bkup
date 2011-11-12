@@ -7,11 +7,8 @@ if (@backup_dir) {
     $dir =~ s/ /\\ /g;
 
     print "Using $dir\n";
-    $rsync = "sudo rsync -vaxAX --delete --exclude-from=/Users/cameronh/.backup/excluded-system --delete-excluded --ignore-errors / $dir";
+    $rsync = "sudo -s -- '/opt/local/bin/rsync -vaxAX --delete --exclude-from=/Users/cameronh/.backup/excluded-system --delete-excluded --ignore-errors / $dir ; touch $dir/.metadata_never_index'";
     system($rsync);
-    $touch = "sudo touch $dir/.metadata_never_index";
-    system($touch);
-
 } else {
     print "No backup volumes found.\n";
 }
