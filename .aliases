@@ -12,6 +12,7 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 
 alias svnst="svn --ignore-externals status | grep ^[ACDGMR?]"
+alias svndi="svn diff|colordiff"
 
 alias portup='sudo port selfupdate && sudo port upgrade outdated'
 
