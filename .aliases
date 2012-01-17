@@ -18,6 +18,7 @@ alias portup='sudo port selfupdate && sudo port upgrade outdated'
 
 alias sdf='ssh sdf.lonestar.org -l chigby'
 alias sverige='ssh sverige.freeshell.org -l chigby'
+alias miku='ssh miku.sdf.org -l chigby'
 alias svalbard='ssh svalbard.freeshell.org -l chigby'
 alias otaku='ssh otaku.freeshell.org -l chigby'
 alias iceland='ssh iceland.freeshell.org -l chigby'
