@@ -10,4 +10,8 @@
     l = log --graph --abbrev-commit --date=relative
     r = !git l -20
 [core]
-	editor = emacs
+    editor = emacs -Q
+[color]
+    ui = true
+[format]
+    pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
