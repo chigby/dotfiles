@@ -3,5 +3,11 @@
     email = cameron.higbynaquin@gmail.com
 [alias]
     co = checkout
+    st = status
+    dc = diff --cached
+    ci = commit
+    di = diff
+    l = log --graph --abbrev-commit --date=relative
+    r = !git l -20
 [core]
 	editor = emacs
