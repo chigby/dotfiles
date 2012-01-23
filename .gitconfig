@@ -1,7 +1,7 @@
 [user]
-	name = Cameron Higby-Naquin
-	email = cameron.higbynaquin@gmail.com
+    name = Cameron Higby-Naquin
+    email = cameron.higbynaquin@gmail.com
 [alias]
-	co = checkout
+    co = checkout
 [core]
 	editor = emacs
