@@ -10,7 +10,7 @@
     l = log --graph --abbrev-commit --date=relative
     r = !git l -20
 [core]
-    editor = emacs -Q
+    editor = emacsclient
 [color]
     ui = true
 [format]
