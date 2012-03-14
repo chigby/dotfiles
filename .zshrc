@@ -65,6 +65,7 @@ LANG='en_US.UTF-8'
 LC_CTYPE=C
 
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+[[ $EMACS = t ]] && unsetopt zle
 
 # See :http://stackoverflow.com/questions/3508387/how-can-i-have-term-el-ansi-term-track-directories-if-using-anyhting-other-than
 if [ "$TERM" = "eterm-color" ]; then
