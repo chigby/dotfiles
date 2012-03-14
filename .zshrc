@@ -38,7 +38,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
-EDITOR='emacs'
+EDITOR='emacsclient'
+ALTERNATE_EDITOR="emacs -Q"
 WORDCHARS="${WORDCHARS:s#/#}"
     autoload colors zsh/terminfo
     if [[ "$terminfo[colors]" -ge 8 ]]; then
