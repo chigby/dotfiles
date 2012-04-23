@@ -51,14 +51,13 @@ WORDCHARS="${WORDCHARS:s#/#}"
    (( count = $count + 1 ))
     done
     PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%m$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
+PS1="$PR_LIGHT_YELLOW(%D{%H:%M})$PR_NO_COLOR [$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%m$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
 if [[ $USER == "cameronh" ]]; then
     if [[ $HOSTNAME == "macbook" ]]; then
-        PS1="$PR_RED%2c$PR_NO_COLOR %(!.#.$) "
+        PS1="$PR_LIGHT_YELLOW(%D{%H:%M})$PR_NO_COLOR $PR_RED%2c$PR_NO_COLOR %(!.#.$) "
     fi
 fi
 
-RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
