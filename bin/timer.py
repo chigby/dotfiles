@@ -19,7 +19,7 @@ def timer(seconds):
         else:
             break
 
-    os.system('afplay /Users/cameronh/temp/hugebell.mp3')
+    os.system('afplay /Users/cameronh/sounds/hugebell.mp3')
 
 
 def main(argv):
@@ -27,7 +27,7 @@ def main(argv):
         print 'Usage: timer.py [MINUTES]'
         sys.exit(1)
     try:
-        seconds = int(argv[1]) * 60
+        seconds = float(argv[1]) * 60
     except ValueError:
         print '"{0}" not numeric.'.format(argv[1])
         sys.exit(1)
