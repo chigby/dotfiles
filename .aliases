@@ -23,7 +23,6 @@ alias svalbard='ssh svalbard.freeshell.org -l chigby'
 alias otaku='ssh otaku.freeshell.org -l chigby'
 alias iceland='ssh iceland.freeshell.org -l chigby'
 
-alias j='jobs'
 alias s='sudo -s'
 alias xterm='xterm -fa Monaco -fs 11 &'
 alias tar='gnutar'
