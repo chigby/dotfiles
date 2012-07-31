@@ -194,6 +194,10 @@ fi
 
 # Set an auto-logout for critical servers or root sessions.
 case "$HOSTNAME" in
+    macbook*)
+        export SERVERTYPE='dev'
+        ;;
+
     dev*)
         export SERVERTYPE='dev'
         ;;
