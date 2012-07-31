@@ -15,6 +15,7 @@ alias svnst="svn --ignore-externals status | grep '^[ACDGMR?]'"
 alias svndi="svn diff|colordiff"
 
 alias portup='sudo port selfupdate && sudo port upgrade outdated'
+alias portcl='sudo port uninstall inactive && sudo port uninstall leaves'
 
 alias sdf='ssh tty.sdf.org -l chigby'
 alias sverige='ssh sverige.freeshell.org -l chigby'
