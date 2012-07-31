@@ -63,7 +63,7 @@ function tng() {
 
 alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'
 
-alias dnsreset='sudo launchctl stop org.macports.dnsmasq && sudo launchctl start org.macports.dnsmasq && sudo dscacheutil -flushcache'
+alias dnsreset='sudo killall dnsmasq; sudo dscacheutil -flushcache'
 
 ###
 # functions
