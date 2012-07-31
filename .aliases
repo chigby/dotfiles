@@ -25,7 +25,12 @@ alias iceland='ssh iceland.freeshell.org -l chigby'
 
 alias s='sudo -s'
 alias xterm='xterm -fa Monaco -fs 11 &'
-alias tar='gnutar'
+if [ -e /opt/local/bin/gnutar ] ; then
+    alias tar='gnutar'
+fi
+if [ -e /opt/local/bin/grm ] ; then
+    alias rm='grm'
+fi
 alias df='df -h'
 alias du='du -h'
 
