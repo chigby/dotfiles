@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import os
+
+home = os.path.expanduser('~')
+ignore = set(['install', 'README', '.git'])
+
+for d in os.listdir('.'):
+    if d in ignore: continue
+    if os.path.isdir(d):
+        base = os.path.join('.', d)
+        dst_dir = os.path.join(home, d)
+        if not os.path.exists(dst_dir):
+            os.mkdir(dst_dir)
+        for f in os.listdir(base):
+            dst = os.path.join(dst_dir, f)
+            src = os.path.join(base, f)
+            if os.path.exists(dst): os.unlink(dst)
+            os.symlink(os.path.abspath(src), dst)
+    else:
+        dst = os.path.join(home, '.{filename}'.format(filename=d))
+        if os.path.exists(dst): os.unlink(dst)
+        os.symlink(os.path.abspath(d), dst)
