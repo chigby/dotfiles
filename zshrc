@@ -7,7 +7,6 @@ setopt APPEND_HISTORY
 # setopt AUTO_REMOVE_SLASH
 # setopt AUTO_RESUME		# tries to resume command of same name
 unsetopt BG_NICE		# do NOT nice bg commands
-setopt CORRECT			# command CORRECTION
 setopt EXTENDED_HISTORY		# puts timestamps in the history
 # setopt HASH_CMDS		# turns on hashing
 #
@@ -15,9 +14,9 @@ unsetopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 # Set/unset  shell options
-setopt   notify globdots correct pushdtohome autolist
-unsetopt cdablevars # for some reason setting this puts users in my cd completion
-setopt   correctall autocd recexact longlistjobs
+setopt   notify globdots pushdtohome autolist
+unsetopt cdablevars correct_all # for some reason setting this puts users in my cd completion
+setopt   autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
@@ -195,6 +194,10 @@ fi
 
 # Set an auto-logout for critical servers or root sessions.
 case "$HOSTNAME" in
+    macbook*)
+        export SERVERTYPE='dev'
+        ;;
+
     dev*)
         export SERVERTYPE='dev'
         ;;
@@ -225,3 +228,8 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
+if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+    . /opt/local/etc/profile.d/autojump.sh
+fi

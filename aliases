@@ -11,10 +11,11 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
-alias svnst="svn --ignore-externals status | grep ^[ACDGMR?]"
+alias svnst="svn --ignore-externals status | grep '^[ACDGMR?]'"
 alias svndi="svn diff|colordiff"
 
 alias portup='sudo port selfupdate && sudo port upgrade outdated'
+alias portcl='sudo port uninstall inactive && sudo port uninstall leaves'
 
 alias sdf='ssh tty.sdf.org -l chigby'
 alias sverige='ssh sverige.freeshell.org -l chigby'
@@ -22,10 +23,14 @@ alias svalbard='ssh svalbard.freeshell.org -l chigby'
 alias otaku='ssh otaku.freeshell.org -l chigby'
 alias iceland='ssh iceland.freeshell.org -l chigby'
 
-alias j='jobs'
 alias s='sudo -s'
 alias xterm='xterm -fa Monaco -fs 11 &'
-alias tar='gnutar'
+if [ -e /opt/local/bin/gnutar ] ; then
+    alias tar='gnutar'
+fi
+if [ -e /opt/local/bin/grm ] ; then
+    alias rm='grm'
+fi
 alias df='df -h'
 alias du='du -h'
 
@@ -58,7 +63,7 @@ function tng() {
 
 alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'
 
-alias dnsreset='sudo launchctl stop org.macports.dnsmasq && sudo launchctl start org.macports.dnsmasq && sudo dscacheutil -flushcache'
+alias dnsreset='sudo killall dnsmasq; sudo dscacheutil -flushcache'
 
 ###
 # functions
