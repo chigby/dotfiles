@@ -198,7 +198,7 @@ case "$HOSTNAME" in
         export SERVERTYPE='dev'
         ;;
 
-    dev*)
+    abellio*)
         export SERVERTYPE='dev'
         ;;
     *)
