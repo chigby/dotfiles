@@ -23,7 +23,6 @@ set sort = 'threads'
 set auto_tag = yes
 hdr_order Date From To Cc
 auto_view text/html
-bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop
 # Gmail-style keyboard shortcuts
