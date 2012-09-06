@@ -3,6 +3,7 @@
 source ~/.muttauth
 # Change the following line to a different editor you prefer.
 set editor = "emacsclient"
+set mailcap_path="~/.mailcap"   # Location of the mailcap file.  It contains instructions for viewing attachments.
 # Basic config, you can leave this as is
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
