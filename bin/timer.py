@@ -5,6 +5,11 @@ import time
 import os
 import sys
 
+def play_sound():
+    home = os.path.expanduser('~')
+    sound_path = os.path.join(home, 'sounds/hugebell.mp3')
+    os.system('afplay {sound_path}'.format(sound_path=sound_path))
+
 def timer(seconds):
     start = datetime.utcnow()
     end = start + timedelta(seconds=seconds)
@@ -19,7 +24,7 @@ def timer(seconds):
         else:
             break
 
-    os.system('afplay /Users/cameronh/sounds/hugebell.mp3')
+    play_sound()
 
 
 def main(argv):
