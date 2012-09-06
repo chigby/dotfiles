@@ -2,7 +2,7 @@
 # Change the following six lines to match your Gmail account details
 source ~/.muttauth
 # Change the following line to a different editor you prefer.
-set editor = "emacs -Q -nw"
+set editor = "emacsclient"
 # Basic config, you can leave this as is
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
