@@ -75,3 +75,9 @@ set alias_file=~/.mail-aliases
 
 set mailcap_path="~/.mailcap"   # Location of the mailcap file.  It contains instructions for viewing attachments.
 alternative_order text/plain text/html  #Prefer plain text to html when possible.
+
+set display_filter="~/bin/addr-trunc"
+
+macro pager ,@r13on "<enter-command> set display_filter=~/bin/addr-trunc; macro pager \\er ,@r13off 'Toggle ROT13 decoding'<Enter><exit><display-message><enter-command> set ?display_filter<Enter>"
+macro pager ,@r13off "<enter-command> unset display_filter; macro pager \\er ,@r13on 'Toggle ROT13 decoding'<Enter><exit><display-message><enter-command> set ?display_filter<Enter>"
+macro pager \er ,@r13off 'Toggle ROT13 decoding'
