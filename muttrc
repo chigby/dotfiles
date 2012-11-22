@@ -25,6 +25,7 @@ hdr_order Date From To Cc
 auto_view text/html
 bind editor ^T complete
 bind editor <space> noop
+bind index "^" imap-fetch-mail
 # Gmail-style keyboard shortcuts
 macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
 macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[Gmail]/Bin\"\n <delete-message>" "Gmail delete message"
