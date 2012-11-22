@@ -2,7 +2,7 @@ alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias ll='ls -alh'
 alias la='ls -a'
-alias ls='ls -F --color=auto '
+alias ls='ls -FG'
 
 # Directory navigation, e.g.:
 # cd by .. or ... or ... or mv file ..../.
@@ -11,11 +11,10 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
-alias svnst="svn --ignore-externals status | grep '^[ACDGMR?]'"
+alias svnst="svn --ignore-externals status | grep ^[ACDGMR?]"
 alias svndi="svn diff|colordiff"
 
 alias portup='sudo port selfupdate && sudo port upgrade outdated'
-alias portcl='sudo port uninstall inactive && sudo port uninstall leaves'
 
 alias sdf='ssh tty.sdf.org -l chigby'
 alias sverige='ssh sverige.freeshell.org -l chigby'
@@ -23,14 +22,10 @@ alias svalbard='ssh svalbard.freeshell.org -l chigby'
 alias otaku='ssh otaku.freeshell.org -l chigby'
 alias iceland='ssh iceland.freeshell.org -l chigby'
 
+alias j='jobs'
 alias s='sudo -s'
 alias xterm='xterm -fa Monaco -fs 11 &'
-if [ -e /opt/local/bin/gnutar ] ; then
-    alias tar='gnutar'
-fi
-if [ -e /opt/local/bin/grm ] ; then
-    alias rm='grm'
-fi
+alias tar='gnutar'
 alias df='df -h'
 alias du='du -h'
 
@@ -63,7 +58,7 @@ function tng() {
 
 alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'
 
-alias dnsreset='sudo killall dnsmasq; sudo dscacheutil -flushcache'
+alias dnsreset='sudo launchctl stop org.macports.dnsmasq && sudo launchctl start org.macports.dnsmasq && sudo dscacheutil -flushcache'
 
 ###
 # functions
@@ -135,3 +130,14 @@ function irssi () {
     /opt/local/bin/irssi
     TERM=xterm
 }
+
+# https://gist.github.com/1525217
+#alias server='open http://localhost:8000 && python -m SimpleHTTPServer'
+function server() { # via https://gist.github.com/1525217
+    local host="localhost"
+    local port="${1:-8888}"
+    (sleep 1 && open "http://${host}:${port}/")&
+    python -m SimpleHTTPServer "$port"
+}
+
+#alias mkwhitelist='cat ~/Mail/* /var/mail/chigby |grep -iv -f ~/badheaders.txt |egrep -oi '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b'|tr "A-Z" "a-z"|sort|uniq > ~/.whitelist'
