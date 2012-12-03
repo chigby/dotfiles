@@ -21,6 +21,7 @@ set move = no
 set include
 set sort = 'threads'
 set auto_tag = yes
+set fast_reply
 hdr_order Date From To Cc
 auto_view text/html
 bind editor ^T complete
