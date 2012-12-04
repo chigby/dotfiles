@@ -20,17 +20,17 @@ def others(number):
         plural = 's'
     return ', and {0} other{1}.'.format(number, plural)
 
-def make_shorter(s):
-    if '\n' not in s or len(s) < 140:
-        return s
-    s = s.replace('\n', '')
-    emails = s.split(',')
+def make_shorter(a):
+    if '\n' not in a or len(a) < 140:
+        return a
+    emails = a.replace('\n', '').split(',')
     p = map(just_names, emails)
     excess = []
-    while len(', '.join(p)) > 125:
+    s = textwrap.fill(', '.join(p) + others(len(excess)))
+    while s.count('\n') > 1:
         excess.append(p.pop())
-    p = textwrap.fill(', '.join(p) + others(len(excess)))
-    return p
+        s = textwrap.fill(', '.join(p) + others(len(excess)))
+    return s
 
 p = Parser()
 msg = p.parse(sys.stdin, headersonly=True)
