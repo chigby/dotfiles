@@ -14,7 +14,11 @@ def just_names(email):
 def others(number):
     if number < 1:
         return ''
-    return ', and {0} others.'.format(number)
+    if number == 1:
+        plural = ''
+    else:
+        plural = 's'
+    return ', and {0} other{1}.'.format(number, plural)
 
 def make_shorter(s):
     if '\n' not in s or len(s) < 140:
