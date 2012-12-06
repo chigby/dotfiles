@@ -1,0 +1,22 @@
+###
+# gmail specific options
+###
+color status green default
+
+set from      = "chn@nullsurface.com"
+set sendmail  = "/opt/local/bin/msmtp -a personal"
+set mbox      = "+chn/archive"
+unset record
+set postponed = "+chn/drafts"
+
+macro index E \
+    "<change-folder>+chn/archive<enter><limit>~B " \
+    "search everything"
+
+macro index D \
+    "<save-message>+chn/trash<enter>" \
+    "move message to the trash"
+
+macro index S \
+    "<save-message>+chn/spam<enter>"  \
+        "mark message as spam"
