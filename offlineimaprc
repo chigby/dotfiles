@@ -1,0 +1,58 @@
+[general]
+ui = ttyui
+accounts = chn,simulacrum,sdf
+pythonfile = ~/.offlineimap.py
+
+[Account chn]
+localrepository = chn-Local
+remoterepository = chn-Remote
+
+[Account simulacrum]
+localrepository = simulacrum-Local
+remoterepository = simulacrum-Remote
+
+[Account sdf]
+localrepository = sdf-local
+remoterepository = sdf-remote
+
+[Repository chn-Local]
+type = Maildir
+localfolders = ~/Mail/chn
+
+[Repository simulacrum-Local]
+type = Maildir
+localfolders = ~/Mail/simulacrum
+
+[Repository sdf-local]
+type = Maildir
+localfolders = ~/Mail/sdf
+
+[Repository chn-Remote]
+type = Gmail
+remoteuser = chn@nullsurface.com
+remotepasseval = get_password('chnemail')
+realdelete = no
+
+# "[Gmail]/Some Folder" --> some_folder
+nametrans = lambda folder: re.sub('^inbox$', 'INBOX',
+                           re.sub(' +', '_',
+                           re.sub(r'.*/(.*)$', r'\1', folder).lower()))
+
+[Repository simulacrum-Remote]
+type = Gmail
+remoteuser = simulacrum@chigby.org
+remotepasseval = get_password('simulacrum')
+realdelete = no
+
+# "[Gmail]/Some Folder" --> some_folder
+nametrans = lambda folder: re.sub('^inbox$', 'INBOX',
+                           re.sub(' +', '_',
+                           re.sub(r'.*/(.*)$', r'\1', folder).lower()))
+
+[Repository sdf-remote]
+type = IMAP
+remotehost = mail.freeshell.org
+remoteuser = chigby
+remotepasseval = get_password('SDF')
+ssl = no
+reference = INBOX
