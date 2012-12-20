@@ -40,7 +40,8 @@ def make_shorter(a):
 p = Parser()
 msg = p.parse(sys.stdin, headersonly=True)
 
-msg.replace_header('To', make_shorter(msg['To']))
+if msg['To']:
+    msg.replace_header('To', make_shorter(msg['To']))
 for cc in ('CC', 'Cc', 'cc'):
     if msg[cc]:
         msg.replace_header(cc, make_shorter(msg[cc]))
