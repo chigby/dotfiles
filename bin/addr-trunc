@@ -4,6 +4,7 @@ import re
 import sys
 import textwrap
 from email.parser import Parser
+from email.header import Header
 
 def just_names(email):
     email = re.sub(r'\s+', ' ', email)
@@ -20,8 +21,12 @@ def others(number):
         plural = 's'
     return ', and {0} other{1}.'.format(number, plural)
 
+def is_too_long(txt):
+    wrapped = Header(txt).encode()
+    return wrapped.count('\n') > 1
+
 def make_shorter(a):
-    if '\n' not in a or len(a) < 140:
+    if not is_too_long(a):
         return a
     emails = a.replace('\n', '').split(',')
     p = map(just_names, emails)
