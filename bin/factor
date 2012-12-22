@@ -20,3 +20,12 @@ for($i = 2; $i <= $number; $i++)
     }
 }
 print("\n");
+
+
+# (21:24) [chigby@abellio:~/bin]$ time factor 293120381
+# 293120381
+# factor 293120381  88.48s user 0.03s system 99% cpu 1:28.52 total
+
+# (21:25) [chigby@abellio:~/bin]$ time factor 293120382
+# 2 3 101 483697
+# factor 293120382  0.13s user 0.00s system 98% cpu 0.139 total
