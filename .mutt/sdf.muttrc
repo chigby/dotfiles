@@ -1,0 +1,9 @@
+###
+# gmail specific options
+###
+color status red default
+
+set from      = "chigby@sdf.lonestar.org"
+set sendmail  = "/opt/local/bin/msmtp -a sdf"
+set record
+set postponed = "+sdf/INBOX.Drafts"
