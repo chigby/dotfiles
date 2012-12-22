@@ -14,13 +14,15 @@ def timer(seconds):
     start = datetime.utcnow()
     end = start + timedelta(seconds=seconds)
     now = start
-    os.system('clear')
+
     while True:
         now = datetime.utcnow()
         if now < end:
-            os.system('clear')
-            print timedelta(seconds=(end - now).seconds)
+            timestr = str(timedelta(seconds=(end - now).seconds))
+            sys.stdout.write(timestr)
+            sys.stdout.flush()
             time.sleep(1)
+            sys.stdout.write('\b'*len(timestr))
         else:
             break
 
