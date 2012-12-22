@@ -39,9 +39,11 @@ set index_format      = "%4C %Z %{%b %d} %-20.20F %s"
 set realname          = "Cameron Higby-Naquin"
 set include                                    # include message in replies
 set fast_reply                                 # skip to compose when replying
+set forward_format  = "Fwd: %s"                # format for subject when forwarding
 
 # pager options
 
+unset markers               # no ugly plus signs
 auto_view text/html         # view html automatically
 alternative_order text/plain text/enriched text/html
 
