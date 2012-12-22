@@ -16,7 +16,10 @@ set spoolfile       = "+chn/INBOX"    # Personal (chn) is default inbox
 set timeout         = 3               # idle time before scanning
 set mail_check      = 0               # minimum time between scans
 set sort_alias      = alias           # sort alias file by alias
-set reverse_alias                     # show names from alias file in index
+# seems to be a problem with reverse_alias and the charset on the pager
+# garbling utf-8 characters.  see http://marc.info/?l=mutt-dev&m=120689794317207
+# commented out for now
+# set reverse_alias                     # show names from alias file in index
 unset move                            # gmail does that
 set delete                            # don't ask, just do
 unset confirmappend                   # don't ask, just do!
