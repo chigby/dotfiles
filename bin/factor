@@ -1,4 +1,4 @@
-#!/usr/pkg/bin/perl -w
+#!/usr/bin/env perl -w
 #
 
 $number = $ARGV[0];
