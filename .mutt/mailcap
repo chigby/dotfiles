@@ -1,6 +1,10 @@
 text/html;                      links %s; nametemplate=%s.html
-text/html;                      links -dump %s; nametemplate=%s.html; copiousou\
-tput
+text/html;                      links -dump %s; nametemplate=%s.html; copiousoutput
+application/octet-stream; view_attachment.sh %s -
+mime_lookup application/octet-stream
+video/*; view_attachment.sh %s -
+image/*; view_attachment.sh %s -
+application/*; view_attachment.sh %s -
 application/msword; antiword %s; copiousoutput;
 application/vnd.ms-excel;xlhtml %s | html2text | less
 application/vnd.ms-excel;xlhtml %s | html2text; copiousoutput
