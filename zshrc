@@ -33,8 +33,8 @@ precmd () { }
 path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin ~/svn/trunk/code/local /usr/bin /opt/awutil /opt/awbin /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin /opt/local/libexec/perl5.12/sitebin)
 TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HOSTNAME="`hostname`"
 PAGER='less'
 EDITOR='emacsclient'
