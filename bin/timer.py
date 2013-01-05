@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
 from datetime import datetime, timedelta
+from os import path
+import subprocess
 import time
-import os
 import sys
 
 def play_sound():
-    home = os.path.expanduser('~')
-    sound_path = os.path.join(home, 'sounds/hugebell.mp3')
-    os.system('afplay {sound_path}'.format(sound_path=sound_path))
+    home = path.expanduser('~')
+    sound_path = path.join(home, 'sounds/hugebell.mp3')
+    subprocess.call(['afplay', sound_path])
 
 def timer(seconds):
     start = datetime.utcnow()
