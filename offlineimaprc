@@ -2,18 +2,22 @@
 ui = ttyui
 accounts = chn,simulacrum,sdf
 pythonfile = ~/.offlineimap.py
+fsync = False
 
 [Account chn]
 localrepository = chn-Local
 remoterepository = chn-Remote
+status_backend = sqlite
 
 [Account simulacrum]
 localrepository = simulacrum-Local
 remoterepository = simulacrum-Remote
+status_backend = sqlite
 
 [Account sdf]
 localrepository = sdf-local
 remoterepository = sdf-remote
+status_backend = sqlite
 
 [Repository chn-Local]
 type = Maildir
