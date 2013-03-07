@@ -30,12 +30,12 @@ def timer(seconds):
 
 def main(argv):
     if len(argv) != 2:
-        print 'Usage: timer.py [MINUTES]'
+        print('Usage: timer.py [MINUTES]')
         sys.exit(1)
     try:
         seconds = float(argv[1]) * 60
     except ValueError:
-        print '"{0}" not numeric.'.format(argv[1])
+        print('"{0}" not numeric.'.format(argv[1]))
         sys.exit(1)
     timer(seconds)
 
