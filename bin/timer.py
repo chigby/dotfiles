@@ -12,9 +12,7 @@ def play_sound():
     subprocess.call(['afplay', sound_path])
 
 def timer(seconds):
-    start = datetime.utcnow()
-    end = start + timedelta(seconds=seconds)
-    now = start
+    end = datetime.utcnow() + timedelta(seconds=seconds)
 
     while True:
         now = datetime.utcnow()
