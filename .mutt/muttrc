@@ -82,3 +82,11 @@ set display_filter="~/bin/addr-trunc"
 macro pager ,@r13on "<enter-command> set display_filter=~/bin/addr-trunc; macro pager \\er ,@r13off 'Toggle ROT13 decoding'<Enter><exit><display-message><enter-command> set ?display_filter<Enter>"
 macro pager ,@r13off "<enter-command> unset display_filter; macro pager \\er ,@r13on 'Toggle ROT13 decoding'<Enter><exit><display-message><enter-command> set ?display_filter<Enter>"
 macro pager \er ,@r13off 'Toggle ROT13 decoding'
+
+macro index,pager \e1 "<change-folder>+chn/INBOX<enter>"         "open chn inbox"
+macro index,pager \e2 "<change-folder>+simulacrum/INBOX<enter>"  "open simulacrum inbox"
+macro index,pager \e3 "<change-folder>+sdf/INBOX<enter>"          "open sdf inbox"
+
+# hooks
+message-hook '~f "(hotmail|yahoo.com|verizon|myway|netzero)"' 'unalternative_order *; alternative_order text/html text/plain'
+message-hook '!(~f "(hotmail|yahoo.com|verizon|myway|netzero)")' 'unalternative_order *; alternative_order text/plain text/html'
