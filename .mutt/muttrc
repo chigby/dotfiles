@@ -59,6 +59,10 @@ mailboxes +chn/INBOX +chn/sent_mail
 mailboxes +simulacrum/INBOX +simulacrum/sent_mail
 mailboxes +sdf/INBOX +sdf/sent-mail
 
+# Contacts
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
 
 # always sourced
 source $alias_file                # required for functionality
