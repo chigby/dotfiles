@@ -3,6 +3,7 @@ ui = ttyui
 accounts = chn,simulacrum,sdf
 pythonfile = ~/.offlineimap.py
 fsync = False
+socktimeout = 30
 
 [Account chn]
 localrepository = chn-Local
