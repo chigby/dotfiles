@@ -29,7 +29,7 @@ def make_shorter(a):
     if not is_too_long(a):
         return a
     emails = a.replace('\n', '').split(',')
-    p = map(just_names, emails)
+    p = list(map(just_names, emails))
     excess = []
     s = textwrap.fill(', '.join(p) + others(len(excess)))
     while s.count('\n') > 1:
@@ -47,4 +47,4 @@ for cc in ('CC', 'Cc', 'cc'):
         msg.replace_header(cc, make_shorter(msg[cc]))
         break
 
-print msg.as_string()
+print(msg.as_string())
