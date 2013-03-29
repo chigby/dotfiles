@@ -26,6 +26,9 @@ unset confirmappend                   # don't ask, just do!
 set quit                              # don't ask, just do!!
 set pipe_decode                       # strip headers and eval mimes when piping
 set thorough_search                   # strip headers and eval mimes before searching
+set mime_forward=yes                  # allow easy forwarding of attachments
+set mime_forward_rest=yes             # allow easy forwarding of attachments
+
 # index options
 set sort              = threads                     # like gmail
 set sort_aux          = last-date-received
