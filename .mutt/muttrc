@@ -55,8 +55,8 @@ alternative_order text/plain text/enriched text/html
 hdr_order Date From To Cc
 
 # boxes
-mailboxes +chn/INBOX +chn/archive +chn/sent
-mailboxes +simulacrum/INBOX +simulacrum/Archive +simulacrum/Sent
+mailboxes +chn/INBOX +chn/sent_mail
+mailboxes +simulacrum/INBOX +simulacrum/sent_mail
 mailboxes +sdf/INBOX +sdf/sent-mail
 
 
