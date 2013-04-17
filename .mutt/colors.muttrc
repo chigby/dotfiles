@@ -1,3 +1,4 @@
+# -*- mode: conf -*-
 color header 	yellow	   default  "^List-"
 color header 	yellow	   default  "^Errors-"
 
