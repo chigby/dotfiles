@@ -3,7 +3,6 @@ color header 	yellow	   default  "^List-"
 color header 	yellow	   default  "^Errors-"
 
 color tree	        green	        default    # thread arrows
-color indicator         black	        cyan       #indicator?
 color status	        brightgreen	default    #status line
 color hdrdefault	cyan	        default	   #default header color
 color attachment	brightyellow	default    #MIME attachments
