@@ -1,0 +1,15 @@
+#!/bin/bash
+
+HASH="%C(yellow)%h%Creset"
+RELATIVE_TIME="%C(green)%ar%Creset"
+AUTHOR="%C(blue)%an%Creset"
+REFS="%C(bold red)%d%Creset"
+SUBJECT="%s"
+
+FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
+
+pretty_git_log() {
+    git log --graph --pretty="tformat:${FORMAT}" $* |
+    column -s '}' -t |
+    less -FXRS
+}

@@ -8,13 +8,16 @@
     dc = diff --cached
     ci = commit
     di = diff
-    l = log --graph --abbrev-commit --date=relative
-    r = !git l -20
+    pl = pull --ff-only
+    fa = fetch --all
+
+    r = !git l -25
+    l = "!. ~/.githelpers && pretty_git_log"
+    la = !git l --all
+
 [core]
     editor = emacsclient
 [color]
     ui = true
-[format]
-    pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
 [push]
-	default = simple
+    default = simple
