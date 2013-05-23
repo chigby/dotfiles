@@ -1,3 +1,4 @@
+# -*- mode: shell-script -*-
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias ll='ls -alh'
