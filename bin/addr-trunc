@@ -25,16 +25,15 @@ def is_too_long(txt):
     wrapped = Header(txt).encode()
     return wrapped.count('\n') > 1
 
-def make_shorter(a):
-    if not is_too_long(a):
-        return a
-    emails = a.replace('\n', '').split(',')
-    p = list(map(just_names, emails))
+def make_shorter(txt):
+    if not is_too_long(txt):
+        return txt
+    emails = list(map(just_names, txt.replace('\n', '').split(',')))
     excess = []
-    s = textwrap.fill(', '.join(p) + others(len(excess)))
+    s = textwrap.fill(', '.join(emails) + others(len(excess)))
     while s.count('\n') > 1:
-        excess.append(p.pop())
-        s = textwrap.fill(', '.join(p) + others(len(excess)))
+        excess.append(emails.pop())
+        s = textwrap.fill(', '.join(emails) + others(len(excess)))
     return s
 
 p = Parser()
