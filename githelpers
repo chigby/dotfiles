@@ -1,8 +1,8 @@
 #!/bin/bash
 
 HASH="%C(yellow)%h%Creset"
-RELATIVE_TIME="%C(green)%ar%Creset"
-AUTHOR="%C(blue)%an%Creset"
+RELATIVE_TIME="%Cgreen(%ar)%Creset"
+AUTHOR="%C(blue)<%an>%Creset"
 REFS="%C(bold red)%d%Creset"
 SUBJECT="%s"
 
