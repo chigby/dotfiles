@@ -1,4 +1,4 @@
-#!/usr/pkg/bin/bash
+#!/bin/bash
 
 if [ ! -n "$1" ]; then
     echo "$1 : Please use the .dvi file as an argument."
