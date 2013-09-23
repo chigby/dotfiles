@@ -6,17 +6,20 @@ import subprocess
 import time
 import sys
 
+MIN = timedelta(seconds=1)
+MAX = timedelta(days=1)
+
 def play_sound():
     home = path.expanduser('~')
     sound_path = path.join(home, 'sounds/hugebell.mp3')
     subprocess.call(['afplay', sound_path])
 
-def timer(seconds):
-    end = datetime.utcnow() + timedelta(seconds=seconds)
-
+def timer(length):
+    end = datetime.utcnow() + length
+    i = 0
     while True:
         now = datetime.utcnow()
-        if now < end:
+        if now < end - timedelta(seconds=1):
             timestr = str(timedelta(seconds=(end - now).seconds))
             sys.stdout.write(timestr)
             sys.stdout.flush()
@@ -33,11 +36,16 @@ def main(argv):
         print('Usage: timer.py [MINUTES]')
         sys.exit(1)
     try:
-        seconds = float(argv[1]) * 60
-    except ValueError:
+        length = timedelta(minutes=float(argv[1]))
+    except (TypeError, ValueError):
         print('"{0}" not numeric.'.format(argv[1]))
         sys.exit(1)
-    timer(seconds)
+    except OverflowError:
+        length = timedelta.max
+    if not MIN < length < MAX:
+        print('Timer out of bounds.  Must be between one second and one day.')
+        sys.exit(1)
+    timer(length)
 
 
 if __name__ == '__main__':
