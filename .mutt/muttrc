@@ -87,6 +87,9 @@ macro pager \er ,@r13off 'Toggle ROT13 decoding'
 macro index,pager \e1 "<change-folder>+chn/INBOX<enter>"         "open chn inbox"
 macro index,pager \e2 "<change-folder>+simulacrum/INBOX<enter>"  "open simulacrum inbox"
 macro index,pager \e3 "<change-folder>+sdf/INBOX<enter>"          "open sdf inbox"
+macro index,pager \e4 "<change-folder>+chn/archive<enter>"         "open chn archive"
+macro index,pager \e5 "<change-folder>+simulacrum/archive<enter>"  "open simulacrum archive"
+macro index,pager \e6 "<change-folder>+sdf/INBOX.Sent<enter>"          "open sdf sent"
 macro index I "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
 macro index i "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
 
