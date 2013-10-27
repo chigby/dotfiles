@@ -16,17 +16,12 @@ def play_sound():
 
 def timer(length):
     end = datetime.utcnow() + length
-    i = 0
-    while True:
-        now = datetime.utcnow()
-        if now < end - timedelta(seconds=1):
-            timestr = str(timedelta(seconds=(end - now).seconds))
-            sys.stdout.write(timestr)
-            sys.stdout.flush()
-            time.sleep(1)
-            sys.stdout.write('\b'*len(timestr))
-        else:
-            break
+    while datetime.utcnow() < end - timedelta(seconds=1):
+        timestr = str(timedelta(seconds=(end - datetime.utcnow()).seconds))
+        sys.stdout.write(timestr)
+        sys.stdout.flush()
+        time.sleep(1)
+        sys.stdout.write('\b'*len(timestr))
 
     play_sound()
 
