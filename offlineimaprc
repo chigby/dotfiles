@@ -48,7 +48,7 @@ type = Gmail
 remoteuser = chn@nullsurface.com
 remotepasseval = get_password('chnemail')
 realdelete = no
-cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
+cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358
 
 # "[Gmail]/Some Folder" --> some_folder
 nametrans = lambda folder: {'[Gmail]/Drafts'    : 'drafts',
@@ -66,7 +66,7 @@ type = Gmail
 remoteuser = simulacrum@chigby.org
 remotepasseval = get_password('simulacrum')
 realdelete = no
-cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
+cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358
 
 # "[Gmail]/Some Folder" --> some_folder
 nametrans = lambda folder: {'[Gmail]/Drafts'    : 'drafts',
