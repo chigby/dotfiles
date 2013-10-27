@@ -1,3 +1,4 @@
+# -*- mode: shell-script -*-
 # setopt NOHUP
 # setopt NOTIFY
 # setopt NO_FLOW_CONTROL
