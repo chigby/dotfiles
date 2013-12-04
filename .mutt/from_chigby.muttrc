@@ -1,0 +1,2 @@
+set from      = "me@chigby.org"
+set sendmail  = "/opt/local/bin/msmtp -a chigby"
