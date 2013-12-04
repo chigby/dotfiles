@@ -36,6 +36,7 @@ nametrans = lambda folder: {'drafts'    : '[Gmail]/Drafts',
                             'sent_mail' : '[Gmail]/Sent Mail',
                             'starred'   : '[Gmail]/Starred',
                             'archive'   : '[Gmail]/All Mail',
+                            'trash'     : '[Gmail]/Trash',
                             }.get(folder, folder).replace('_', ' ')
 
 
@@ -73,6 +74,7 @@ nametrans = lambda folder: {'[Gmail]/Drafts'    : 'drafts',
                             '[Gmail]/Sent Mail' : 'sent_mail',
                             '[Gmail]/Starred'   : 'starred',
                             '[Gmail]/All Mail'  : 'archive',
+                            '[Gmail]/Trash'     : 'trash',
                             }.get(folder, folder).replace(' ', '_')
 folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
                                              '[Gmail]/Important',
