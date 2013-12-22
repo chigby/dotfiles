@@ -27,8 +27,6 @@ def is_too_long(txt):
     return wrapped.count('\n') > 1
 
 def make_shorter(txt):
-    if not is_too_long(txt):
-        return txt
     emails = list(map(just_names, txt.replace('\n', '').split(',')))
     excess = []
     s = textwrap.fill(', '.join(emails) + others(len(excess)))
@@ -39,11 +37,10 @@ def make_shorter(txt):
 
 p = Parser(policy=policy.default)
 msg = p.parse(sys.stdin, headersonly=True)
-
-if msg['To']:
+if msg['To'] and is_too_long(msg['To']):
     msg.replace_header('To', make_shorter(msg['To']))
 for cc in ('CC', 'Cc', 'cc'):
-    if msg[cc]:
+    if msg[cc] and is_too_long(msg[cc]):
         msg.replace_header(cc, make_shorter(msg[cc]))
         break
 
