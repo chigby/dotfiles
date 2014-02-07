@@ -77,14 +77,6 @@ lmod () {
     fi
 }
 
-cd() {
-    if [  -n "$1" ]; then
-	builtin cd "$@" && ls
-    else
-	builtin cd ~ && ls
-    fi
-}
-
 decruft () {
     for ext in .pyc \~; do
 	rm -f **/*$ext(N)
