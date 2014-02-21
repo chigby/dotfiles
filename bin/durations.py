@@ -8,7 +8,7 @@
 # grep -E "^created|duration" * |~/temp/durations.py
 
 import sys
-from collections import defaultdict
+from collections import Counter
 from datetime import timedelta, datetime
 from dateutil import parser
 from itertools import tee
@@ -29,10 +29,7 @@ def median(lst):
 
 
 def mode(lst):
-    d = defaultdict(int)
-    for i in lst:
-        d[i] += 1
-    return max(d.keys(), key=lambda k: d[k])
+    return Counter(lst).most_common(1)[0][0]
 
 
 def clean(text):
