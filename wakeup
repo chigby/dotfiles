@@ -1,8 +1,0 @@
-#!/bin/bash
-
-PLIST='com.chigby.offlineimap.plist'
-
-/bin/launchctl stop $PLIST
-/bin/rm -f $HOME/.offlineimap/lock $HOME/.offlineimap/pid
-/bin/launchctl start $PLIST
-pgrep -f offlineimap|xargs kill -9

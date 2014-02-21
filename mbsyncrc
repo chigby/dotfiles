@@ -1,0 +1,108 @@
+IMAPAccount chn
+Host imap.gmail.com
+User chn@nullsurface.com
+PassCmd "/Users/chigby/bin/get_password.py chnemail"
+UseIMAPS yes
+# see https://wiki.archlinux.org/index.php/Isync for how to obtain this file.
+CertificateFile ~/.cert/imap.gmail.com.pem
+
+IMAPStore chn-remote
+Account chn
+
+MaildirStore chn-local
+Path ~/Mail/chn/
+Inbox ~/Mail/chn/INBOX
+
+Channel chn
+Master :chn-remote:
+Slave :chn-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Drafts" "INBOX"
+Create Both
+Expunge None
+SyncState *
+
+#
+# simulacrum
+#
+IMAPAccount simulacrum
+Host imap.gmail.com
+User simulacrum@chigby.org
+PassCmd "/Users/chigby/bin/get_password.py simulacrum"
+UseIMAPS yes
+# see https://wiki.archlinux.org/index.php/Isync for how to obtain this file.
+CertificateFile ~/.cert/imap.gmail.com.pem
+
+IMAPStore simulacrum-remote
+Account simulacrum
+
+MaildirStore simulacrum-local
+Path ~/Mail/simulacrum/
+Inbox ~/Mail/simulacrum/INBOX
+
+Channel simulacrum
+Master :simulacrum-remote:
+Slave :simulacrum-local:
+# Patterns "INBOX"
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Drafts" "INBOX"
+Create Both
+Expunge None
+SyncState *
+
+
+#
+# sdf
+#
+IMAPAccount sdf
+Host mx.sdf.org
+User chigby
+PassCmd "/Users/chigby/bin/get_password.py SDF"
+UseIMAPS yes
+CertificateFile ~/.cert/sdf.imap.pem
+
+IMAPStore sdf-remote
+Account sdf
+
+MaildirStore sdf-local
+Path ~/Mail/sdf/
+Inbox ~/Mail/sdf/INBOX
+
+Channel sdf
+Master :sdf-remote:
+Slave :sdf-local:
+Patterns "INBOX" "INBOX.Trash" "INBOX.Drafts" "INBOX.Sent"
+Create Both
+Expunge None
+SyncState *
+
+#
+# gmail
+#
+IMAPAccount gmail
+Host imap.gmail.com
+User cameron.higbynaquin@gmail.com
+PassCmd "/Users/chigby/bin/get_password.py gmail"
+UseIMAPS yes
+CertificateFile ~/.cert/imap.gmail.com.pem
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/Mail/gmail/
+Inbox ~/Mail/gmail/INBOX
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns !* [Gmail]/Chats
+Create Both
+Expunge None
+SyncState *
+
+Channel chn-inbox
+Master :chn-remote:
+Slave :chn-local:
+Patterns "INBOX"
+Create Both
+Expunge None
+SyncState *
