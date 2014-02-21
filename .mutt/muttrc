@@ -93,9 +93,9 @@ macro index,pager \e3 "<change-folder>+sdf/INBOX<enter>"          "open sdf inbo
 macro index,pager \e4 "<change-folder>+chn/[Gmail]/.All<quote-char> Mail<enter>"         "open chn archive"
 macro index,pager \e5 "<change-folder>+simulacrum/[Gmail]/.All<quote-char> Mail<enter>"         "open simulacrum archive"
 macro index,pager \e6 "<change-folder>+sdf/INBOX.Sent<enter>"          "open sdf sent"
-macro index I "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
-macro index i "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
-
+macro index I "<shell-escape>mbsyncwrapper<enter>"           "run offlineimap to sync all mail"
+macro index i "<shell-escape>mbsync chn-inbox<enter>" "run mbsync to sync inbox"
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
 
 # keys
