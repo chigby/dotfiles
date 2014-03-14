@@ -29,7 +29,7 @@ def is_too_long(txt):
 def make_shorter(txt):
     emails = list(map(just_names, txt.replace('\n', '').split(',')))
     excess = []
-    s = textwrap.fill(', '.join(emails) + others(len(excess)))
+    s = ', '.join(emails) + others(len(excess))
     while len(s) > 130:
         excess.append(emails.pop())
         s = ', '.join(emails) + others(len(excess))
