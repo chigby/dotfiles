@@ -16,6 +16,7 @@ def just_names(email):
     email = email.strip()
     return email
 
+
 def others(number):
     if number < 1:
         return ''
@@ -25,9 +26,11 @@ def others(number):
         plural = 's'
     return ', and {0} other{1}.'.format(number, plural)
 
+
 def is_too_long(txt):
     wrapped = Header(txt).encode()
     return wrapped.count('\n') > 1
+
 
 def make_shorter(txt):
     emails = list(map(just_names, txt.replace('\n', '').split(',')))
@@ -37,6 +40,7 @@ def make_shorter(txt):
         excess.append(emails.pop())
         s = ', '.join(emails) + others(len(excess))
     return s.replace('\n', ' ')
+
 
 p = Parser(policy=policy.default)
 msg = p.parse(sys.stdin, headersonly=True)
