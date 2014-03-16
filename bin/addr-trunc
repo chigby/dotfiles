@@ -2,7 +2,6 @@
 
 import re
 import sys
-import textwrap
 from email import policy
 from email.parser import Parser
 from email.header import Header
