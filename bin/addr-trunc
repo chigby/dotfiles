@@ -6,9 +6,13 @@ from email import policy
 from email.parser import Parser
 from email.header import Header
 
+BRACKETED = re.compile(r'<[^>]+>')
+SPACES = re.compile(r'\s{2,}')
+
+
 def just_names(email):
-    email = re.sub(r'\s+', ' ', email)
-    email = re.sub(r'<[^>]+>', '', email)
+    email = SPACES.sub(' ', email)
+    email = BRACKETED.sub('', email)
     email = email.strip()
     return email
 
