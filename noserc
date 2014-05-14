@@ -1,3 +1,4 @@
+# -*- mode: conf -*-
 [nosetests]
 verbosity=2
 #with-color=true
