@@ -1,9 +1,5 @@
 # -*- mode: conf -*-
 [nosetests]
 verbosity=2
-#with-color=true
-with-spec=true
-spec-color=true
 stop=true
 nocapture=false
-testmatch=((?:^|[b_.-])(:?[Tt]est|When|should|Describe))
