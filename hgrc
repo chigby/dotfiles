@@ -1,0 +1,42 @@
+# example config (see "hg help config" for more info)
+
+[ui]
+# name and email, e.g.
+# username = Jane Doe <jdoe@example.com>
+username = procyon
+editor = emacsclient
+
+[extensions]
+# uncomment these lines to enable some popular extensions
+# (see "hg help extensions" for more info)
+# pager =
+progress =
+color =
+graphlog =
+
+[diff]
+git = True
+
+[defaults]
+glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
+
+[color]
+status.modified = cyan
+status.added = green
+status.removed = red
+status.deleted = yellow bold underline
+status.unknown = magenta bold underline
+status.ignored = black bold
+diff.diffline = none
+diff.extended = cyan
+diff.file_a = red
+diff.file_b = green
+diff.hunk = yellow bold
+diff.deleted = red
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = white_background
+
+[alias]
+show = log --color=always -pr
+slog = log --template '{rev}:{node|short} {desc|firstline}\n'
