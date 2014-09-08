@@ -1,3 +1,4 @@
+# -*- mode: conf -*-
 # example config (see "hg help config" for more info)
 
 [ui]
@@ -9,7 +10,9 @@ editor = emacsclient
 [extensions]
 # uncomment these lines to enable some popular extensions
 # (see "hg help extensions" for more info)
-# pager =
+# shelve =
+# record =
+pager =
 progress =
 color =
 graphlog =
@@ -40,3 +43,5 @@ diff.trailingwhitespace = white_background
 [alias]
 show = log --color=always -pr
 slog = log --template '{rev}:{node|short} {desc|firstline}\n'
+r = slog --limit 25
+g = glog --limit 10
