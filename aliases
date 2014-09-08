@@ -31,6 +31,7 @@ alias du='du -h'
 
 alias ipython='ipython -classic'
 alias thes='dict -d moby-thes'
+alias wcopy='wget -E -H -k -K -p'
 
 # find all installed packages that depends on a given package.
 function rdep () {
@@ -136,3 +137,5 @@ function server() { # via https://gist.github.com/1525217
 
 alias mnid="sudo mount -o proto=tcp,-P,port=2049 192.168.1.99:/volume1/Shared/ /Volumes/nidavellir"
 alias pserve="/opt/local/bin/php54 -S 127.0.0.1:8080"
+
+alias love="/Applications/love.app/Contents/MacOS/love"
