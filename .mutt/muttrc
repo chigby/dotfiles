@@ -94,9 +94,9 @@ macro index,pager \e4 "<change-folder>+chn/[Gmail]/.All<quote-char> Mail<enter>"
 macro index,pager \e5 "<change-folder>+simulacrum/[Gmail]/.All<quote-char> Mail<enter>"         "open simulacrum archive"
 macro index,pager \e6 "<change-folder>+sdf/INBOX.Sent<enter>"          "open sdf sent"
 macro index I "<shell-escape>mbsyncwrapper<enter>"           "run offlineimap to sync all mail"
-macro index i "<shell-escape>killall mbsync; mbsync chn-inbox<enter>" "run mbsync to sync inbox"
+macro index i "<shell-escape>mbsyncwrapper chn-inbox<enter>" "run mbsync to sync inbox"
 macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/Mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
 
 # keys
 bind index <space>  collapse-thread

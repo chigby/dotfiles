@@ -64,14 +64,14 @@ Account sdf
 
 MaildirStore sdf-local
 Path ~/Mail/sdf/
-Inbox ~/Mail/sdf/INBOX
+Inbox ~/Mail/sdf/inbox
 
 Channel sdf
 Master :sdf-remote:
 Slave :sdf-local:
 Patterns "INBOX" "INBOX.Trash" "INBOX.Drafts" "INBOX.Sent"
 Create Both
-Expunge None
+Expunge Both
 SyncState *
 
 #

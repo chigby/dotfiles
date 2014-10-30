@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# sync a given inbox (or all inboxes), then update the notmuch index
+if ! [[ $@ ]]; then
+    /usr/local/bin/mbsync --all
+else
+  /usr/local/bin/mbsync $@
+fi
+
+notmuch new

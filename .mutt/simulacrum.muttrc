@@ -13,7 +13,3 @@ set postponed = "+simulacrum/drafts"
 macro index E \
     "<change-folder>+simulacrum/archive<enter><limit>~B " \
     "search everything"
-
-macro index S \
-    "<save-message>+simulacrum/spam<enter>"  \
-        "mark message as spam"

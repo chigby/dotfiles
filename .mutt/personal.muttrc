@@ -14,9 +14,5 @@ macro index E \
     "<change-folder>+chn/archive<enter><limit>~B " \
     "search everything"
 
-macro index S \
-    "<save-message>+chn/spam<enter>"  \
-        "mark message as spam"
-
 reply-hook '~t ^me@chigby\.org$' 'source ~/.mutt/from_chigby.muttrc'
 reply-hook '~t ^chn@nullsurface\.com$' 'source ~/.mutt/from_personal.muttrc'
