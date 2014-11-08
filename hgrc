@@ -6,6 +6,7 @@
 # username = Jane Doe <jdoe@example.com>
 username = procyon
 editor = emacsclient
+merge = internal:merge
 
 [extensions]
 # uncomment these lines to enable some popular extensions
@@ -16,9 +17,14 @@ pager =
 progress =
 color =
 graphlog =
+hggit = ~/.hg-git/hggit
 
 [diff]
 git = True
+
+[pager]
+pager = less -R
+attend = annotate, cat, diff, export, glog, log, qdiff, help
 
 [defaults]
 glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
