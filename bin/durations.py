@@ -23,7 +23,7 @@ def median(lst):
     num = len(lst)
     lst = sorted(lst)
     if num % 2 != 0:
-        return (lst[num // 2] + lst[num // 2 - 1]) / 2
+        return Fraction(lst[num // 2] + lst[num // 2 - 1], 2)
     else:
         return lst[num // 2]
 
