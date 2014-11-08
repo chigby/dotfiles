@@ -38,7 +38,7 @@ def main(argv):
     except OverflowError:
         length = timedelta.max
     if not MIN < length < MAX:
-        print('Timer out of bounds.  Must be between one second and one day.')
+        print('Timer out of bounds.  Must be between one second and one day, i.e. {:.2} < t < {}'.format(MIN.total_seconds()/60, int(MAX.total_seconds()//60)))
         sys.exit(1)
     timer(length)
 
