@@ -102,7 +102,7 @@ SyncState *
 Channel chn-inbox
 Master :chn-remote:
 Slave :chn-local:
-Patterns "INBOX"
+Patterns "INBOX" "[Gmail]/All Mail"
 Create Both
 Expunge None
 SyncState *
