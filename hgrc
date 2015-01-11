@@ -5,7 +5,7 @@
 # name and email, e.g.
 # username = Jane Doe <jdoe@example.com>
 username = procyon
-editor = emacsclient
+editor = emacsclient -t
 merge = internal:merge
 
 [extensions]
@@ -14,6 +14,7 @@ merge = internal:merge
 # shelve =
 # record =
 pager =
+record =
 progress =
 color =
 graphlog =
@@ -24,7 +25,7 @@ git = True
 
 [pager]
 pager = less -R
-attend = annotate, cat, diff, export, glog, log, qdiff, help
+attend = annotate, cat, diff, export, slog, glog, log, qdiff, help
 
 [defaults]
 glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
