@@ -25,7 +25,7 @@ git = True
 
 [pager]
 pager = less -R
-attend = annotate, cat, diff, export, slog, glog, log, qdiff, help
+attend = annotate, cat, diff, export, slog, glog, log, qdiff, help, show
 
 [defaults]
 glog = --template 'changeset:   {rev}:{node|short} {tags}\nsummary:     {desc|firstline|fill68|tabindent|tabindent}\n\n'
