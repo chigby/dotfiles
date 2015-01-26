@@ -2,29 +2,39 @@
 
 import re
 import sys
+from functools import reduce, partial
 from email import policy
 from email.parser import Parser
 from email.header import Header
 
 BRACKETED = re.compile(r'<[^>]+>')
+QUOTED = re.compile(r'"([^"]+)"')
 SPACES = re.compile(r'\s{2,}')
+collapse_spaces = partial(SPACES.sub, ' ')
+remove_bracketed = partial(BRACKETED.sub, '')
+strip = lambda s: s.strip()
 
+apply = lambda value, func: func(value)
 
 def just_names(email):
-    email = SPACES.sub(' ', email)
-    email = BRACKETED.sub('', email)
-    email = email.strip()
-    return email
+    m = QUOTED.findall(email)
+    if m:
+        return m[0]
+    else:
+        return reduce(apply, [collapse_spaces, remove_bracketed, strip], email)
+
+
+def pluralize(word, n):
+    if n == 1:
+        return word
+    else:
+        return '{word}s'.format(word=word)
 
 
 def others(number):
     if number < 1:
         return ''
-    if number == 1:
-        plural = ''
-    else:
-        plural = 's'
-    return ', and {0} other{1}.'.format(number, plural)
+    return ', and {0} {1}.'.format(number, pluralize('other', number))
 
 
 def is_too_long(txt):
@@ -32,14 +42,18 @@ def is_too_long(txt):
     return wrapped.count('\n') > 1
 
 
+def split_len(n, lst):
+    """returns the first elements of a list with total length < n."""
+    if not lst or len(lst[0]) > n:
+        return []
+    else:
+        return [lst[0]] + split_len(n - len(lst[0]), lst[1:])
+
+
 def make_shorter(txt):
-    emails = list(map(just_names, txt.replace('\n', '').split(',')))
-    excess = []
-    s = ', '.join(emails) + others(len(excess))
-    while len(s) > 130:
-        excess.append(emails.pop())
-        s = ', '.join(emails) + others(len(excess))
-    return s.replace('\n', ' ')
+    p = list(map(just_names, txt.replace('\n', '').split(',')))
+    verbose_p = split_len(110, p)
+    return ', '.join(verbose_p) + others(len(p) - len(verbose_p))
 
 
 p = Parser(policy=policy.default)
