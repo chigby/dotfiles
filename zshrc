@@ -147,12 +147,11 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 # zstyle ':completion:*:processes' command 'ps -au$USER'
 
 ## add colors to processes for kill completion
+zstyle ':completion:*:processes' command 'ps ax -o pid,s,nice,stime,args | sed "/ps/d"'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-
-#zstyle ':completion:*:processes' command 'ps ax -o pid,s,nice,stime,args | sed "/ps/d"'
-zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -A -o pid,user,cmd'
 zstyle ':completion:*:processes-names' command 'ps axho command'
-#zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
+
 #
 #NEW completion:
 # 1. All /etc/hosts hostnames are in autocomplete
