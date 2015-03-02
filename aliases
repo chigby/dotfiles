@@ -31,7 +31,7 @@ alias du='du -h'
 
 alias ipython='ipython -classic'
 alias thes='dict -d moby-thes'
-alias wcopy='wget -E -H -k -K -p'
+alias wcopy='wget --adjust-extension --span-hosts --convert-links --backup-converted --page-requisites --no-clobber'
 alias ytd="youtubedown.pl --progress"
 
 # find all installed packages that depends on a given package.
