@@ -31,7 +31,7 @@ zmodload -a zsh/mapfile mapfile
 
 precmd () { }
 
-path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin ~/svn/trunk/code/local /usr/bin /opt/awutil /opt/awbin /opt/local/Library/Frameworks/Python.framework/Versions/Current/bin /opt/local/libexec/perl5.12/sitebin /usr/local/texlive/2013/bin/x86_64-darwin)
+path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin ~/svn/trunk/code/local /usr/bin /opt/awutil /opt/awbin /opt/local/Library/Frameworks/Python.framework/Versions/Current/bin /opt/local/libexec/perl5.12/sitebin /usr/local/texlive/2013/bin/x86_64-darwin /Applications/Postgres.app/Contents/Versions/9.4/bin)
 TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
