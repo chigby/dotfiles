@@ -4,7 +4,7 @@
 [ui]
 # name and email, e.g.
 # username = Jane Doe <jdoe@example.com>
-username = procyon
+username = Cameron Higby-Naquin <simulacrum@chigby.org>
 editor = emacsclient -t
 merge = internal:merge
 
