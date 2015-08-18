@@ -227,6 +227,11 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
+if [ -f /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    . /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh
+fi
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
