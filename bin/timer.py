@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# TODO: --loop option: continuously runs, rings bell every N minutes
+
 from datetime import datetime, timedelta
 from os import path
 import subprocess
