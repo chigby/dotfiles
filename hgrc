@@ -52,3 +52,4 @@ show = log --color=always -pr
 slog = log --template '{rev}:{node|short} {desc|firstline}\n'
 r = slog --limit 25
 g = glog --limit 10
+zlog = !hg log --style ~/hg/mercurial-cli-templates/map-cmdline.sqlog | column -s '|' -t
