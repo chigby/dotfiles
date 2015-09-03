@@ -29,7 +29,7 @@ Host mx.sdf.org
 User chigby
 PassCmd "/Users/chigby/bin/get_password.py SDF"
 UseIMAPS yes
-CertificateFile ~/.cert/sdf.imap.pem
+CertificateFile ~/.cert/sdf2.imap.pem
 
 IMAPStore sdf-remote
 Account sdf
