@@ -133,12 +133,11 @@ function server() { # via https://gist.github.com/1525217
   local host="localhost"
   local port="${1:-8888}"
   (sleep 1 && open "http://${host}:${port}/")&
-  python -m SimpleHTTPServer "$port"
+  python -m http.server "$port"
 }
 
 #alias mkwhitelist='cat ~/Mail/* /var/mail/chigby |grep -iv -f ~/badheaders.txt |egrep -oi '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b'|tr "A-Z" "a-z"|sort|uniq > ~/.whitelist'
 
-alias mnid="sudo mount -o proto=tcp,-P,port=2049 192.168.1.99:/volume1/Shared/ /Volumes/nidavellir"
 alias pserve="/opt/local/bin/php54 -S 127.0.0.1:8080"
 
 alias love="/Applications/love.app/Contents/MacOS/love"
