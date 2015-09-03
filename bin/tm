@@ -30,7 +30,7 @@ def timer(length):
 
 def main(argv):
     if len(argv) != 2:
-        print('Usage: timer.py [MINUTES]')
+        print('Usage: tm [MINUTES]')
         sys.exit(1)
     try:
         length = timedelta(minutes=float(argv[1]))
