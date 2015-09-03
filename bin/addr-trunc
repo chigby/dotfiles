@@ -56,13 +56,15 @@ def make_shorter(txt):
     return ', '.join(verbose_p) + others(len(p) - len(verbose_p))
 
 
+def replace_short_header(msg, field):
+    value = msg[field]
+    if value and is_too_long(value):
+        msg.replace_header(field, make_shorter(value))
+
+
 p = Parser(policy=policy.default)
 msg = p.parse(sys.stdin, headersonly=True)
-if msg['To'] and is_too_long(msg['To']):
-    msg.replace_header('To', make_shorter(msg['To']))
-for cc in ('CC', 'Cc', 'cc'):
-    if msg[cc] and is_too_long(msg[cc]):
-        msg.replace_header(cc, make_shorter(msg[cc]))
-        break
+replace_short_header(msg, 'to')
+replace_short_header(msg, 'cc')
 
 print(msg.as_string())
