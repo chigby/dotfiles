@@ -227,6 +227,7 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
+export VIRTUALENVWRAPPER_PYTHON=/opt/local/bin/python
 if [ -f /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     . /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh
