@@ -35,7 +35,7 @@ def main(argv):
     try:
         length = timedelta(minutes=float(argv[1]))
     except (TypeError, ValueError):
-        print('"{0}" not numeric.'.format(argv[1]))
+        print('{!r} not numeric.'.format(argv[1]))
         sys.exit(1)
     except OverflowError:
         length = timedelta.max
