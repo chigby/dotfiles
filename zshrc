@@ -4,12 +4,12 @@
 # setopt NO_FLOW_CONTROL
 setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt APPEND_HISTORY
-# setopt AUTO_LIST		# these two should be turned off
+# setopt AUTO_LIST # these two should be turned off
 # setopt AUTO_REMOVE_SLASH
-# setopt AUTO_RESUME		# tries to resume command of same name
-unsetopt BG_NICE		# do NOT nice bg commands
-setopt EXTENDED_HISTORY		# puts timestamps in the history
-# setopt HASH_CMDS		# turns on hashing
+# setopt AUTO_RESUME # tries to resume command of same name
+unsetopt BG_NICE # do NOT nice bg commands
+setopt EXTENDED_HISTORY # puts timestamps in the history
+# setopt HASH_CMDS # turns on hashing
 #
 unsetopt MENUCOMPLETE
 setopt ALL_EXPORT
