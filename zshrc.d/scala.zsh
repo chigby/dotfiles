@@ -1,4 +1,4 @@
-if [[ -e /usr/share/scala ]]; then
+if [[ -d /usr/share/scala ]]; then
     export SCALA_HOME=$(/usr/share/scala)
-    path=("$SCALA_HOME" $path)
+    path=("$SCALA_HOME/bin" $path)
 fi

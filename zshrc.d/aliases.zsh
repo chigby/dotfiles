@@ -141,3 +141,7 @@ function server() { # via https://gist.github.com/1525217
 alias pserve="/opt/local/bin/php54 -S 127.0.0.1:8080"
 
 alias love="/Applications/love.app/Contents/MacOS/love"
+
+p() {
+    cd $(find ~/lw ~/git ~/hg -maxdepth 1 -type d | selecta)
+}

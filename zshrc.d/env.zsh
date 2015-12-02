@@ -1,0 +1,9 @@
+TZ="America/New_York"
+HOSTNAME="`hostname`"
+PAGER='less'
+LESS="-iMSx4 -FXR"
+EDITOR='emacsclient -nw'
+ALTERNATE_EDITOR="emacs -Q"
+LC_ALL='en_US.UTF-8'
+LANG='en_US.UTF-8'
+LC_CTYPE=C
