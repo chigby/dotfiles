@@ -1,29 +1,32 @@
 #!/usr/bin/env python
 
 # TODO: --loop option: continuously runs, rings bell every N minutes
+# todo: write a version of this in Elm
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 from os import path
 import subprocess
 import time
 import sys
 
+STEP = 1
 MIN = timedelta(seconds=1)
 MAX = timedelta(days=1)
 
 def play_sound():
     home = path.expanduser('~')
     sound_path = path.join(home, 'sounds/hugebell.mp3')
-    subprocess.call(['afplay', sound_path])
+    subprocess.run(['afplay', sound_path])
 
-def timer(length):
-    end = datetime.utcnow() + length
-    while datetime.utcnow() < end - timedelta(seconds=1):
-        timestr = str(timedelta(seconds=(end - datetime.utcnow()).seconds))
-        sys.stdout.write(timestr)
+def timer(duration):
+    elapsed = timedelta(seconds=0)
+    while elapsed < duration:
+        output = str(duration - elapsed)
+        sys.stdout.write(output)
         sys.stdout.flush()
-        time.sleep(1)
-        sys.stdout.write('\b'*len(timestr))
+        time.sleep(STEP)
+        elapsed = elapsed + timedelta(seconds=STEP)
+        sys.stdout.write('\b'*len(output))
 
     play_sound()
 
