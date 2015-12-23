@@ -1,7 +1,7 @@
 # -*- mode: conf -*-
 [user]
     name = Cameron Higby-Naquin
-    email = cameron.higbynaquin@gmail.com
+    email = me@chigby.org
 [alias]
     co = checkout
     st = status
