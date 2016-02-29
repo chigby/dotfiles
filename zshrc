@@ -10,6 +10,11 @@ path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin /usr/bin /o
 #WORDCHARS="${WORDCHARS:s#/#}"
 
 export DOTFILES_ROOT="$HOME/git/dotfiles"
+
+for file in "$DOTFILES_ROOT"/functions/*; do
+  source "$file"
+done
+
 for file in "$DOTFILES_ROOT"/zshrc.d/*; do
   source "$file"
 done
