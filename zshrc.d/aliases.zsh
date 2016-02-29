@@ -145,3 +145,11 @@ alias love="/Applications/love.app/Contents/MacOS/love"
 p() {
     cd $(find ~/lw ~/git ~/hg -maxdepth 1 -type d | selecta)
 }
+
+if ! command_exists pbpaste && command_exists xclip; then
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
+if ! command_exists pbcopy && command_exists xclip; then
+    alias pbcopy='xclip -selection clipboard'
+fi
