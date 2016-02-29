@@ -4,7 +4,7 @@
 setopt PROMPT_SUBST
 autoload -U promptinit
 promptinit
-prompt grb
+prompt chn
 
 path=(~/bin /usr/local/bin /opt/local/bin /opt/local/sbin $path /bin /usr/bin /opt/local/Library/Frameworks/Python.framework/Versions/Current/bin /opt/local/libexec/perl5.12/sitebin /usr/local/texlive/2013/bin/x86_64-darwin /Applications/Postgres.app/Contents/Versions/9.4/bin)
 #WORDCHARS="${WORDCHARS:s#/#}"
