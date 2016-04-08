@@ -2,6 +2,7 @@
 [user]
     name = Cameron Higby-Naquin
     email = me@chigby.org
+    signingkey = 7859F83F
 [alias]
     co = checkout
     st = status
