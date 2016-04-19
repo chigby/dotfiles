@@ -31,7 +31,6 @@ alias xterm='xterm -fa Monaco -fs 11 &'
 alias df='df -h'
 alias du='du -h'
 
-alias ipython='ipython -classic'
 alias thes='dict -d moby-thes'
 alias wcopy='wget --adjust-extension --span-hosts --convert-links --backup-converted --page-requisites --no-clobber'
 alias ytd="youtubedown.pl --progress"
