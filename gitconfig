@@ -28,7 +28,7 @@
     tidy-dryrun = !git remote prune --dry-run origin && git branch -r --merged master | grep -v 'master$' | grep -v feature | sed 's%origin/%%' | xargs -I% echo [remote] % && git branch --merged master | grep -v 'master$' | grep -v feature | xargs -I% echo [local] %
 
 [core]
-    editor = emacsclient -t
+    editor = emacsclient
 [color]
     ui = true
 [push]
