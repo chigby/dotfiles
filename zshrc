@@ -25,3 +25,6 @@ for file in "$DOTFILES_ROOT"/zshrc.d/*.zsh; do
 done
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export NVM_DIR="/home/chigby/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
