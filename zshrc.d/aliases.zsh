@@ -3,7 +3,7 @@ alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias ll='ls -alh'
 alias la='ls -a'
-alias ls='ls -FGsk'
+alias ls='ls -FGsk --color'
 
 # Directory navigation, e.g.:
 # cd by .. or ... or ... or mv file ..../.
