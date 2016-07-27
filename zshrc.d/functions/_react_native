@@ -1,0 +1,3 @@
+#compdef react-native
+
+_sub_commands start bundle unbundle new-library android run-android run-ios upgrade
