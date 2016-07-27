@@ -152,3 +152,5 @@ fi
 if ! command_exists pbcopy && command_exists xclip; then
     alias pbcopy='xclip -selection clipboard'
 fi
+
+finame() { find . -iname "*$1*"; }
