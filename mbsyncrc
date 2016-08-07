@@ -25,7 +25,7 @@ SyncState *
 # sdf
 #
 IMAPAccount sdf
-Host mx.sdf.org
+Host wm.sdf.org
 User chigby
 PassCmd "/Users/chigby/bin/get_password.py SDF"
 UseIMAPS yes
