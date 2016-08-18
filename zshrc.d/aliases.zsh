@@ -3,7 +3,12 @@ alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias ll='ls -alh'
 alias la='ls -a'
-alias ls='ls -FGsk --color'
+
+if [[ $(uname -s) == 'Darwin' ]]; then
+    alias ls='ls -FGsk'
+else
+    alias ls='ls -Fsk --color'
+fi
 
 # Directory navigation, e.g.:
 # cd by .. or ... or ... or mv file ..../.
