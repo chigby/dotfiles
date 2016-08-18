@@ -2,5 +2,5 @@
 # see https://github.com/robbyrussell/oh-my-zsh/issues/449
 unsetopt nomatch
 
-# saner word characters
+# higher util word characters
 export WORDCHARS='*?[]~&;!$%^<>'
