@@ -1,3 +1,5 @@
 \timing
 \pset pager always
 \pset null ¤
+\pset format wrapped
+\pset linestyle unicode
