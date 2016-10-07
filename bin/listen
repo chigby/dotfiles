@@ -1,0 +1,33 @@
+#!/bin/bash
+
+case $1 in
+  vpr)
+    stream="http://vprclassical.streamguys.net:8000/vprclassical128.mp3"
+    ;;
+  operavore)
+    stream="http://opera-stream.wqxr.org/operavore.aac"
+    ;;
+  wqxr)
+    stream="http://stream.wqxr.org/wqxr.aac"
+    ;;
+  drone)
+    stream="http://somafm.com/dronezone.pls"
+    ;;
+  silent)
+    stream="http://somafm.com/silent.pls"
+    ;;
+  q2)
+    stream="http://q2stream.wqxr.org/q2.aac"
+    ;;
+  *)
+    echo $"Usage: $0 {vpr|operavore|wqxr|q2|operavore|drone|silent}"
+    exit 1
+esac
+
+if hash mpv 2>/dev/null; then
+    player=mpv
+elif hash vlc 2>/dev/null; then
+     player=vlc
+fi
+
+$player $stream
