@@ -26,8 +26,11 @@ esac
 
 if hash mpv 2>/dev/null; then
     player=mpv
-elif hash vlc 2>/dev/null; then
-     player=vlc
+elif [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ; then
+    player="/Applications/VLC.app/Contents/MacOS/VLC -I rc"
+else
+  echo "No players found, please install VLC or MPV."
+  exit 1
 fi
 
 $player $stream
