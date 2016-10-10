@@ -3,7 +3,7 @@
 import os
 
 home = os.path.expanduser('~')
-ignore = set(['install', 'README', '.git'])
+ignore = {'install', 'README', '.git', 'zshrc.d'}
 
 for d in os.listdir('.'):
     if d in ignore: continue
