@@ -11,3 +11,5 @@ function mr() {
 
   workon muckrack
 }
+
+alias pm="python manage.py"
