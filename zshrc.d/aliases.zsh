@@ -159,3 +159,7 @@ if ! command_exists pbcopy && command_exists xclip; then
 fi
 
 finame() { find . -iname "*$1*"; }
+
+if [ -f /Applications/VLC.app/Contents/MacOS/VLC ]; then
+    alias vlc="/Applications/VLC.app/Contents/MacOS/VLC -I rc"
+fi
