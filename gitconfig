@@ -41,3 +41,5 @@
     log = diff-highlight | less
 [interactive]
     diffFilter = diff-highlight
+[commit]
+    gpgSign = true
