@@ -43,3 +43,5 @@
     diffFilter = diff-highlight
 [commit]
     gpgSign = true
+[rerere]
+    enabled = true

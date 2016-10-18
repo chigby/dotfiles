@@ -15,8 +15,8 @@ MAX = timedelta(days=1)
 
 def play_sound():
     home = path.expanduser('~')
-    sound_path = path.join(home, 'sounds/hugebell.mp3')
-    subprocess.run(['afplay', sound_path])
+    sound_path = path.join(home, 'sounds/hugebell.wav')
+    subprocess.run(['aplay', '-q', sound_path])
 
 def timer(duration):
     elapsed = timedelta(seconds=0)
