@@ -2,7 +2,7 @@
 
 case $1 in
   vpr)
-    stream="http://vprclassical.streamguys.net:8000/vprclassical128.mp3"
+    stream="http://vprclassical.streamguys.net/vprclassical128.mp3"
     ;;
   operavore)
     stream="http://opera-stream.wqxr.org/operavore.aac"
