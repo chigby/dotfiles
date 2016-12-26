@@ -17,6 +17,11 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
+if command_exists exa; then
+    alias e="exa"
+    alias el="exa -l"
+fi
+
 alias svnst="svn --ignore-externals status | grep ^[ACDGMR?]"
 alias svndi="svn diff|colordiff"
 
