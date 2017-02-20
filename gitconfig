@@ -29,16 +29,13 @@
 
 [core]
     editor = emacsclient
+    pager = diff-highlight | less -r
 [color]
     ui = true
 [push]
     default = simple
 [diff]
     compactionHeuristic = true
-[pager]
-    diff = diff-highlight | less
-    show = diff-highlight | less
-    log = diff-highlight | less
 [interactive]
     diffFilter = diff-highlight
 [commit]
