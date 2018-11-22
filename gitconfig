@@ -42,3 +42,5 @@
     gpgSign = true
 [rerere]
     enabled = true
+[merge]
+    conflictStyle = diff3
