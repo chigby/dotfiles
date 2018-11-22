@@ -23,11 +23,14 @@ for file in "$DOTFILES_ROOT"/zshrc.d/*.zsh; do
   source "$file"
 done
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/gem_home/gem_home.sh
+chruby ruby-2.5
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
-alias node='unalias node ; unalias npm ; nvm use default ; node $@'
-alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
+export PATH="$PATH:$HOME/.cargo/bin" # Add cargo (rust pkg manager) to PATH for scripting
 
-export GPG_AGENT_INFO=/tmp/gpg-H6WcMG/S.gpg-agent:14501:1
+# alias npm-exec=PATH=$(npm bin):$PATH
+
+if [[ `uname` == 'Darwin' ]] then
+   export GPG_AGENT_INFO=/tmp/gpg-H6WcMG/S.gpg-agent:14501:1
+fi

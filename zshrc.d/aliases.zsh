@@ -45,6 +45,8 @@ alias thes='dict -d moby-thes'
 alias wcopy='wget --adjust-extension --span-hosts --convert-links --backup-converted --page-requisites --no-clobber'
 alias ytd="youtubedown.pl --progress"
 
+alias dstopall='docker stop $(docker ps -a -q)'
+
 # find all installed packages that depends on a given package.
 function rdep () {
     apt-cache rdepends $1|sed '1,2d'|sort|uniq|xargs apt-cache policy |grep "Installed: [0-9]" -B1
@@ -147,12 +149,12 @@ function server() { # via https://gist.github.com/1525217
 
 #alias mkwhitelist='cat ~/Mail/* /var/mail/chigby |grep -iv -f ~/badheaders.txt |egrep -oi '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b'|tr "A-Z" "a-z"|sort|uniq > ~/.whitelist'
 
-alias pserve="/opt/local/bin/php54 -S 127.0.0.1:8080"
+alias pserve="`which php` -S 127.0.0.1:8080"
 
 alias love="/Applications/love.app/Contents/MacOS/love"
 
 p() {
-    cd $(find ~/lw ~/git ~/hg -maxdepth 1 -type d | selecta)
+    cd $(find ~/projects ~/fpf ~/git ~/hg -maxdepth 1 -type d | selecta)
 }
 
 if ! command_exists pbpaste && command_exists xclip; then
@@ -168,3 +170,8 @@ finame() { find . -iname "*$1*"; }
 if [ -f /Applications/VLC.app/Contents/MacOS/VLC ]; then
     alias vlc="/Applications/VLC.app/Contents/MacOS/VLC -I rc"
 fi
+
+alias oldshot='find ~/Pictures -maxdepth 1 -iname "Screenshot*" -ctime +7 -exec mv -t ~/Pictures/old-screenshots {} +'
+
+# requires "npm install -g tiddlywiki"
+alias tiddly="tiddlywiki ~/Dropbox/codex --server 8009"
